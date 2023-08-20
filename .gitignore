@@ -1,0 +1,28 @@
+# Ignore the Library folder
+Library/
+
+# Ignore auto-generated project files
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/EditorBuildSettings.asset
+
+# Ignore compiled asset bundles
+AssetBundles/
+
+# Ignore temp files
+Temp/
+UserSettings/
+
+# Ignore Visual Studio and Rider files (if using Unity with C#)
+.vscode/
+*.sln
+*.suo
+*.userprefs
+*.csproj
+*.pidb
+*.sln.DotSettings
+
+# Ignore macOS-specific files
+.DS_Store
+
+# Ignore Unity generated meta files
+*.meta
