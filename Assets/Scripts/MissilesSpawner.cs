@@ -20,9 +20,9 @@ public class MissilesSpawner : MonoBehaviour
         {
             if (missileCount < 2)
             {
-
+/*
                 Instantiate(missiles, transform.localPosition, Quaternion.identity);
-                missileCount++;
+                missileCount++;*/
             }
         }
     
