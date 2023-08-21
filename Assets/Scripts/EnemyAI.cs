@@ -31,60 +31,91 @@ public class EnemyAI : MonoBehaviour
 
 
     // AI with X,Y rotation
-    /*  public Transform player; // Reference to the player's GameObject
-      public float moveSpeed = 5f;
-      public float rotationSpeed = 5f;
-      public float detectionRange = 10f;
+    /*ublic Transform player; // Reference to the player's GameObject
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 5f;
+    public float detectionRange = 10f;
 
-      private void Update()
-      {
-          // Calculate distance to the player
-          float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+    private void Update()
+    {
+        // Calculate distance to the player
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-          if (distanceToPlayer < detectionRange)
-          {
-              // Calculate target direction only on the Z-axis
-              Vector3 targetDirection = player.position - transform.position;
-              float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+        if (distanceToPlayer < detectionRange)
+        {
+            // Calculate target direction only on the Z-axis
+            Vector3 targetDirection = player.position - transform.position;
+            float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
 
-              // Smoothly rotate towards the target angle
-              Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
-              transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            // Smoothly rotate towards the target angle
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-              // Move towards the player's position
-              Vector3 moveDirection = targetDirection.normalized;
-              transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-          }
+            // Move towards the player's position
+            Vector3 moveDirection = targetDirection.normalized;
+            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        }
 
 
 
-      }*/
+    }*/
 
-    public Transform player; // Reference to the player's GameObject
+    private Transform randomTransferPosition; // Reference to the player's GameObject
     public float circleRadius = 1f;
     public float circleSpeed = 10f;
 
     private float angle = 0f;
+    public float moveSpeed = 5f;
+    public float rotationSpeed = 5f;
+    public float detectionRange = 10f;
 
+    public float minX = -14.82f;
+    public float maxX = 14.45f;
+    public float minY = -9.47f;
+    public float maxY = -1.3f;
+
+    public void Start()
+    {
+        CreateRandomTransformPosition();
+    }
     private void Update()
     {
-        // Calculate the desired position around the player
-        Vector3 circlePosition = player.position + Quaternion.Euler(0f, 0f, angle) * Vector3.right * circleRadius;
-
-        // Calculate rotation to look at the player
-        Vector3 lookDirection = player.position - transform.position;
-        float targetAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-
-        // Apply rotation and move the enemy to the desired position
-        transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
-        transform.position = circlePosition;
-
-        // Increment the angle over time to make the enemy circle around the player
-        angle += circleSpeed * Time.deltaTime;
-        if (angle > 360f)
+        float distanceToPlayer = Vector3.Distance(transform.position, randomTransferPosition.position);
+        Debug.DrawRay(transform.position, randomTransferPosition.position);
+        if (distanceToPlayer > 5f)
         {
-            angle -= 360f;
+
+            // Calculate target direction only on the Z-axis
+            Vector3 targetDirection = randomTransferPosition.position - transform.position;
+            float targetAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+         
+            // Smoothly rotate towards the target angle
+            Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            // Move towards the player's position
+           /* Vector3 moveDirection = targetDirection.normalized;
+            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);*/
+
         }
+        else
+        {
+            // Destroy the temporary new Transform
+            CreateRandomTransformPosition();
+        }
+       
 
     }
+    public void CreateRandomTransformPosition()
+    {
+        float randomX = Random.Range(minX, maxX);
+        float randomY = Random.Range(minY, maxY);
+        if (randomTransferPosition == null)
+        {
+        randomTransferPosition = new GameObject().transform;
+        }
+        randomTransferPosition.position = new Vector3(randomX, randomY, 0);
+  
+    }
 }
+
