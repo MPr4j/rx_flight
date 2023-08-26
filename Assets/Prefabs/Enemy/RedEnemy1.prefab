@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3801299820405518810}
   - component: {fileID: 4947916770696398009}
   - component: {fileID: 1338927517}
+  - component: {fileID: 6588071142827761381}
   m_Layer: 0
   m_Name: RedEnemy1
   m_TagString: Enemy
@@ -165,3 +166,23 @@ MonoBehaviour:
   maxX: 14.45
   minY: -9.47
   maxY: -1.3
+--- !u!95 &6588071142827761381
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801299820405518808}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 409d6eb5307414745a57a590bdfc6010, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
