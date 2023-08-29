@@ -5,12 +5,24 @@ using UnityEngine;
 public class FireMovement : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed = 2.5f;
-    [SerializeField]
-    private float directionY;
+    private float moveSpeed = 10f;
+
     // Update is called once per frame
-    void Update()
+    Rigidbody2D rb;
+    public void Start()
     {
-        transform.position += new Vector3(0, directionY , 0) * Time.deltaTime * moveSpeed;
+        rb = GetComponent<Rigidbody2D>();
+
+        float zRotation = transform.rotation.eulerAngles.z;
+        rb.velocity = Quaternion.Euler(0, 0, zRotation) * Vector2.up * moveSpeed;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

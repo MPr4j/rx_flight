@@ -58,17 +58,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GeneralScripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerCameraFollower.cs" />
-    <Compile Include="Assets\Scripts\UiGameController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyFireSpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\ObjCollector.cs" />
     <Compile Include="Assets\Scripts\FireMovement.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\BackgroundScroller.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
     <Compile Include="Assets\Scripts\FireSpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\GameOverScreen.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprites\Fonts\font info.txt" />

@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Vector3 targetPosition;
-    private float minYPosition;
-    private float maxYPosition;
-    public float swipeSpeed = 10f; // Adjust this value to control movement speed
-    private Vector2 lastTouchDelta;
-    public delegate void PlayerDied();
-    private GameManager gameManager;
+    public float maxSpeed = 50f; // Adjust the speed as needed
+    public float rotSpeed = 10f; // Adjust the rotation speed as needed
 
-    public void Awake()
-    {
-     
-    }
+    private Rigidbody2D rb;
+
+    private Vector2 moveDirection = Vector2.up;
+
     private void Start()
-    { 
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        
-        HandleTouch();
+        // Handle user input for rotation
+        HandleRotationInput();
+
        
+        rb.velocity = moveDirection * maxSpeed;
     }
-    public void HandleTouch()
+
+    private void HandleRotationInput()
     {
         if (Input.touchCount > 0)
         {
@@ -34,21 +33,20 @@ public class Player : MonoBehaviour
 
             if (touch.phase == TouchPhase.Moved)
             {
+                // Calculate the rotation change based on swipe direction
+                float zRotation = transform.rotation.eulerAngles.z;
+                zRotation -= touch.deltaPosition.x * rotSpeed * Time.deltaTime;
 
-                lastTouchDelta = touch.deltaPosition;
+                // Set the new rotation
+                transform.rotation = Quaternion.Euler(0, 0, zRotation);
+
+                moveDirection = Quaternion.Euler(0, 0, zRotation) * Vector2.up;
+                
             }
-            // Normalize the touch delta to avoid overly large movement
-            Vector3 normalizedDelta = new Vector3(lastTouchDelta.x, lastTouchDelta.y, 0f).normalized;
-
-            // Translate the player using the normalized touch delta
-            transform.Translate(normalizedDelta * swipeSpeed * Time.deltaTime);
-        }
-        else
-        {
-            lastTouchDelta = Vector3.zero;
         }
     }
 
+  
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))

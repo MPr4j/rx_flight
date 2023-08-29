@@ -7,6 +7,17 @@ using UnityEngine.UI;
 public class GameOverScreen : MonoBehaviour
 {
     public Text PointText;
+
+    public void Start()
+    {
+        GameManager.gameIsOver += GameOver;
+        print("Subscribed to the game manager");
+    }
+    public void GameOver()
+    {
+        SetUp(100);
+    }
+
     public void SetUp(int score)
     {
         gameObject.SetActive(true);
