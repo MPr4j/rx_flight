@@ -70,19 +70,7 @@
     <Compile Include="Assets\Scripts\GeneralScripts\GameOverScreen.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Common.dll" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.iOS.dll" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.dll" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-8.5.2_manifest.txt" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.iOS.dll" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Core.dll" />
-    <None Include="Assets\GoogleMobileAds\link.xml" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Android.dll" />
     <None Include="Assets\Sprites\Fonts\font info.txt" />
-    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.Android.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -345,24 +333,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Unity">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Core">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Ump.Unity">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Common">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleMobileAds.Ump">
-      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Android.Types">
       <HintPath>D:\Unity 2022.1.24f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
@@ -870,10 +840,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="GoogleMobileAds.Editor.csproj">
-      <Project>{27D0CEAE-EF7F-76B8-A0F7-7EF4C7A68B2B}</Project>
-      <Name>GoogleMobileAds.Editor</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
