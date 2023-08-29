@@ -34,6 +34,7 @@ public class FireSpawner : MonoBehaviour
 
     void InstantiateNewFire(GameObject fireShape)
     {
-        Instantiate(fireShape, transform.position, Quaternion.identity);
+
+        Instantiate(fireShape, transform.position,transform.rotation);
     }
 }
