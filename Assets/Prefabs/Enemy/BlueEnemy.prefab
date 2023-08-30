@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 1376034293321193970}
   - component: {fileID: 7846935731588160995}
   - component: {fileID: 2970463572151631875}
-  - component: {fileID: 3057398033623519723}
   m_Layer: 0
-  m_Name: RedEnemy
+  m_Name: BlueEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,30 +81,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3057398033623519723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1376034293321193983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c80f574ad33652a46b85e19290a492cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  circleRadius: 1
-  circleSpeed: 1
-  minX: -10.5
-  maxX: 12.8
-  minY: -2.5
-  maxY: 3.5
 --- !u!1 &3877124285645538922
 GameObject:
   m_ObjectHideFlags: 0
