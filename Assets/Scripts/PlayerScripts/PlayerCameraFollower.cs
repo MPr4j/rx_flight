@@ -6,40 +6,32 @@ public class PlayerCameraFollower : MonoBehaviour
 {
     private Transform player;
     private Vector3 tempPos;
-    [SerializeField]
-    private float minX,maxX, minY, maxY;
 
+    [SerializeField]
+    private float 
+        rightBound,
+        leftBound,
+        topBound,
+        bottomBound;
+    private float cameraHalfWidth;
+    private float cameraHalfHeight;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+        cameraHalfWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        cameraHalfHeight = Camera.main.orthographicSize;
     }
 
+
+    // Update is called once per frame
     // Update is called once per frame
     void LateUpdate()
     {
-    
         tempPos = transform.position;
-        tempPos.x = player.position.x;
-        tempPos.y = player.position.y;
-        if(tempPos.x < minX)
-        {
-            tempPos.x = minX;
-        }
-        if(tempPos.y < minY)
-        {
-            tempPos.y = minY;
-        }
-        if(tempPos.x > maxX)
-        {
-            tempPos.x = maxX;
-        }
-        if(tempPos.y > maxY)
-        {
-            tempPos.y = maxY;
-        }
-            
+        tempPos.x = Mathf.Clamp(player.position.x, leftBound + cameraHalfWidth, rightBound - cameraHalfWidth);
+        tempPos.y = Mathf.Clamp(player.position.y, bottomBound + cameraHalfHeight, topBound - cameraHalfHeight);
         transform.position = tempPos;
     }
 }

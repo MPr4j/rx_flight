@@ -19,7 +19,7 @@ public class FireSpawner : MonoBehaviour
     {
         while(true)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1f);
             if (Input.touchCount > 0)
             {
                 InstantiateNewFire(fireShape);

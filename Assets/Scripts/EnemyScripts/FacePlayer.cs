@@ -30,4 +30,7 @@ public class FacePlayer : MonoBehaviour
         Quaternion disiredRot = Quaternion.Euler(0,0,zAngele);
         transform.rotation=Quaternion.RotateTowards(transform.rotation,disiredRot,rotationSpeed*Time.deltaTime);
     }
+
+  
 }
+
