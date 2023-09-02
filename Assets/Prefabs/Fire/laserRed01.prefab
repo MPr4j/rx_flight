@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 861549897990296816}
   - component: {fileID: 376432442511844758}
   - component: {fileID: 2315255601821192259}
-  - component: {fileID: -4938817679745907276}
+  - component: {fileID: 1765715817383001393}
   m_Layer: 0
   m_Name: laserRed01
-  m_TagString: Enemy
+  m_TagString: EnemyFire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1700177223
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ee0e1c5339b713c4b99a8bda2568946b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -118,13 +118,13 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.09, y: 0.54}
   m_Direction: 0
---- !u!114 &-4938817679745907276
+--- !u!114 &1765715817383001393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,8 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7509589904352374871}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9a0d53bd6bf8304bb65b49f53683b21, type: 3}
+  m_Script: {fileID: 11500000, guid: d07d0e4bc16bea7499633ed32469db9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
-  directionY: -1
+  moveSpeed: 4
