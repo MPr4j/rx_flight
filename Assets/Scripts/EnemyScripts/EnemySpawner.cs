@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     private List<GameObject> spawns = new List<GameObject>();
     [SerializeField]
     private float spawnDelay = 10f;
@@ -26,7 +26,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
             GameObject gameObject = GameObject.Instantiate(spawns[GenerateRandomIndex()],transform);
             gameObject.tag = "Enemy";
-            gameObject.AddComponent<EnemyAI>();
+            //gameObject.AddComponent<EnemyAI>();
             count++;
         }
     }
@@ -34,5 +34,5 @@ public class EnemySpawner : MonoBehaviour
     {
         int index = Random.Range(0, spawns.Count);
         return index;   
-    }
+    }*/
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class ObjCollector : MonoBehaviour
 {
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Fire"))
+        if (collision.gameObject.CompareTag("Fire")||collision.gameObject.CompareTag("EnemyFire"))
         {
             Destroy(collision.gameObject);
         }

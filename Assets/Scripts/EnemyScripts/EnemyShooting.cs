@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class EnemyShooting : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject fireShape;
+    private GameObject playerObj;
+    [SerializeField]
+    private int fireRate = 1;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         
+    }
+    void Start()
+    {
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(Fire());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    
+    }
+    IEnumerator Fire()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(fireRate);
+            if (playerObj!=null)
+            {
+                InstantiateNewFire(fireShape);
+            }
+            else
+            {
+                StopCoroutine("InstantiateNewFire");
+            }
+        }
+
+    }
+
+    void InstantiateNewFire(GameObject fireShape)
+    {
+
+        Instantiate(fireShape, transform.position, transform.rotation);
     }
 }
