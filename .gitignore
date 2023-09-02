@@ -9,4 +9,6 @@
 /[Bb]uilds/
 /Logs/
 
-/.vs/
+/.vs
+
+/UserSettings/
