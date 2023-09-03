@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerCameraFollower.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Scripts\JoystickHandler\JoystickHandler.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\ScoreManeger.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\FacePlayer.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyFireSpawner.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
@@ -77,7 +78,6 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\GameOverScreen.cs" />
-    <Compile Include="Assets\Scripts\GeneralScripts\ScoreManeger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprites\Fonts\font info.txt" />
