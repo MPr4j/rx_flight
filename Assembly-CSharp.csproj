@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\EnemyScripts\MoveForward.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickSetterExample.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\StateButtonsHandler.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\GameOverScreen.cs" />
