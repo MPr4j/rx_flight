@@ -28,7 +28,7 @@ public class FacePlayer : MonoBehaviour
         dir.Normalize();
         float zAngele = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
         Quaternion disiredRot = Quaternion.Euler(0,0,zAngele);
-        transform.rotation=Quaternion.RotateTowards(transform.rotation,disiredRot,rotationSpeed*Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation,disiredRot,rotationSpeed*Time.deltaTime);
     }
 
   
