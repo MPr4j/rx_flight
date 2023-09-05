@@ -21,9 +21,15 @@ public class JoystickHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (playerObj != null)
         {
             playerRigidBody2D = playerObj.GetComponent<Rigidbody2D>();
+
         }
+   
+     
     }
 
+    public void GameOverJoystick()
+    {
+    }
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +48,10 @@ public class JoystickHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     public void RotateUserWhenJoystickTouched()
     {
-
+        if (playerObj == null)
+        {
+            return;
+        }
         if (joystick != null)
         {
             if (isTouhcingJoystick)
@@ -61,8 +70,12 @@ public class JoystickHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        isTouhcingJoystick = false;
-        playerRigidBody2D.velocity = Vector2.zero;
+        if(playerObj != null)
+        {
+            isTouhcingJoystick = false;
+            playerRigidBody2D.velocity = Vector2.zero;
+        }
+    
     }
 
     public void OnPointerDown(PointerEventData eventData)

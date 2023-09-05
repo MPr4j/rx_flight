@@ -7,6 +7,13 @@ public class FireMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 10f;
 
+    int[,] map = new int[5, 5] {
+        {0,1,0,0,0}, 
+        {0,1,0,1,0},
+        {0,0,0,1,1},
+        {0,0,0,0,0},
+        {0,0,0,0,0},
+    }; 
     // Update is called once per frame
     Rigidbody2D rb;
     public void Start()

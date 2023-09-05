@@ -29,9 +29,13 @@ public class PlayerCameraFollower : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        tempPos = transform.position;
-        tempPos.x = Mathf.Clamp(player.position.x, leftBound + cameraHalfWidth, rightBound - cameraHalfWidth);
-        tempPos.y = Mathf.Clamp(player.position.y, bottomBound + cameraHalfHeight, topBound - cameraHalfHeight);
-        transform.position = tempPos;
+        if(player != null)
+        {
+            tempPos = transform.position;
+            tempPos.x = Mathf.Clamp(player.position.x, leftBound + cameraHalfWidth, rightBound - cameraHalfWidth);
+            tempPos.y = Mathf.Clamp(player.position.y, bottomBound + cameraHalfHeight, topBound - cameraHalfHeight);
+            transform.position = tempPos;
+        }
+       
     }
 }
