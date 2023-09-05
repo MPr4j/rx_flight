@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    /*[SerializeField]
-    private List<GameObject> spawns = new List<GameObject>();
+    [SerializeField]
+    private GameObject spawn;
+    [SerializeField]
+    private List<GameObject> spawnerLocations = new List<GameObject>();
     [SerializeField]
     private float spawnDelay = 10f;
-    private int count = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,20 +20,13 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            if (count == 2)
-            { 
-                break;
-            }
             yield return new WaitForSeconds(spawnDelay);
-            GameObject gameObject = GameObject.Instantiate(spawns[GenerateRandomIndex()],transform);
-            gameObject.tag = "Enemy";
-            //gameObject.AddComponent<EnemyAI>();
-            count++;
+            GameObject gameObject = GameObject.Instantiate(spawn, spawnerLocations[GenerateRandomIndex()].transform);
         }
     }
     private int GenerateRandomIndex()
     {
-        int index = Random.Range(0, spawns.Count);
-        return index;   
-    }*/
+        int index = Random.Range(0, spawnerLocations.Count);
+        return index;
+    }
 }

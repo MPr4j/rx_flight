@@ -15,4 +15,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("GamePlay");
     }
+    public void GameMap()
+    {
+        SceneManager.LoadScene("Map");
+    }
+    
 }

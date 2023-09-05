@@ -17,7 +17,10 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(HandleTouch());
+        
+    }
+    private void Update()
+    {
     }
 
 
@@ -29,22 +32,13 @@ public class Player : MonoBehaviour
             GameManager.GetInstance().NotifyGameIsOver();
         }
     }
-    IEnumerator HandleTouch()
+    public void  HandleTouch()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.5f);
             if (Input.touchCount > 0)
             {
                 InstantiateNewFire(fireShape);
                 a_AudioSource.Play();
             }
-            else
-            {
-                StopCoroutine("InstantiateNewFire");
-            }
-        }
-
     }
 
     void InstantiateNewFire(GameObject fireShape)

@@ -20,8 +20,12 @@ public class GameOverScreen : MonoBehaviour
 
     public void SetUp(int score)
     {
-        gameObject.SetActive(true);
-        PointText.text = score.ToString() + (" POINTS");
+            gameObject.SetActive(true);
+        if (PointText != null)
+        {
+            PointText.text = score.ToString() + (" POINTS");
+        }
+    
     }
     public void RestartButton()
     {

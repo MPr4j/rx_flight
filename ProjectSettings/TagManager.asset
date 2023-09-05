@@ -8,6 +8,8 @@ TagManager:
   - GameOver
   - UI
   - Fire
+  - EnemyFire
+  - Joystick
   layers:
   - Default
   - TransparentFX

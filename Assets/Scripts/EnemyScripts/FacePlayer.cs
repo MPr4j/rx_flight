@@ -10,6 +10,10 @@ public class FacePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Look () ;
+    }
+    private void Look()
+    {
         //find player 
         if (player == null)
         {
@@ -31,6 +35,25 @@ public class FacePlayer : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation,disiredRot,rotationSpeed*Time.deltaTime);
     }
 
-  
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag=="Player")
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Fire")
+        {
+            Destroy(gameObject);
+            ScoreManeger.instance.AddPoint();
+        }
+    }
+
+
+
 }
 

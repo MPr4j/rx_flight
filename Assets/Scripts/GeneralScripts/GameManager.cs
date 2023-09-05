@@ -71,6 +71,15 @@ public class GameManager : MonoBehaviour
 
     public void NotifyGameIsOver()
     {
+        GameObject joystick = GameObject.Find("Fixed Joystick");
+        GameObject fireBtn = GameObject.Find("Fire");
+        GameObject score = GameObject.Find("Text_Score");
+       
+       
+        Destroy(joystick);
+        Destroy(fireBtn);
+        Destroy(score);
+        print("Joystick destroyed");
         gameOverScreen.GameOver();
     }
 }
