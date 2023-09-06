@@ -142,7 +142,6 @@ GameObject:
   - component: {fileID: 4947916770696398009}
   - component: {fileID: 6588071142827761381}
   - component: {fileID: 6569866036907776506}
-  - component: {fileID: 2875308698576457541}
   m_Layer: 0
   m_Name: RedEnemy1
   m_TagString: Enemy
@@ -247,15 +246,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireShape: {fileID: 7509589904352374871, guid: d20b42d2c5012934da0c9033406bb5d7, type: 3}
---- !u!114 &2875308698576457541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3801299820405518808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4cf0b0e4ce0604ca67ebbafb799ed1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
