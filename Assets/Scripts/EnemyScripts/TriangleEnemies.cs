@@ -11,11 +11,13 @@ public class TriangleEnemies : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
     private List<Vector2> targets = new List<Vector2>();
+    private List<GameObject> gameObjects = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         CreateGridAndTransforms();
         CreateAndPositionPrefabs();
+        StartCoroutine(RandomFireCall());
     }
 
     public void CreateGridAndTransforms()
@@ -65,12 +67,27 @@ public class TriangleEnemies : MonoBehaviour
             {
                 // Calculate the position for the prefab
                 float posX = col * prefab.transform.localScale.x + rowOffsetX + transform.position.x;
-                float posY = (numRows - 1 - row) * prefab.transform.localScale.y + transform.position.y;
+                float posY = (numRows - 1 - row) * prefab.transform.localScale.y 
+                    + transform.position.y;
 
                 // Create and position the prefab
                 GameObject gameObject = Instantiate(prefab, new Vector2(posX, posY), Quaternion.identity);
+                gameObjects.Add(gameObject);
                 gameObject.transform.SetParent(transform);
             }
+        }
+    }
+    IEnumerator RandomFireCall()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(4);
+            FireAbility fireAbility = gameObjects[Random.RandomRange(0,gameObjects.Count)].GetComponent<FireAbility>();
+            if (fireAbility != null)
+            {
+                fireAbility.Fire();
+            }
+
         }
     }
 }
