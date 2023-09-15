@@ -57,9 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Runtime\CinemachinePixelPerfect.cs" />
-    <Compile Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Runtime\PixelPerfectCameraInternal.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Runtime\AssemblyInfo.cs" />
     <Compile Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Runtime\PixelPerfectCamera.cs" />
+    <Compile Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Runtime\PixelPerfectCameraInternal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Library\PackageCache\com.unity.2d.pixel-perfect@5.0.2\Runtime\Unity.2D.PixelPerfect.asmdef" />
