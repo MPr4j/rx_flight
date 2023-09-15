@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void OnSceneChanged(Scene scene,LoadSceneMode mode) {
-        if(scene.name == "GamePlay")
+        if(scene.name == "GamePlay_1")
         {
            InstantiateNecessaryObjects();
             

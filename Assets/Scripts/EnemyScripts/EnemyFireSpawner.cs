@@ -17,6 +17,10 @@ public class EnemyFireSpawner : MonoBehaviour
     {
         while (true)
         {
+            if (gameObject == null || fireShape == null)
+            {
+                break;
+            }
             yield return new WaitForSeconds(5f);
             Instantiate(fireShape, transform.position, Quaternion.identity);
         }

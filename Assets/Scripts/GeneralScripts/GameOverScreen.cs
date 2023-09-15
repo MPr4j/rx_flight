@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class GameOverScreen : MonoBehaviour
     public void GameOver()
     {
         SetUp(100);
+      
     }
 
     public void SetUp(int score)
@@ -29,7 +31,7 @@ public class GameOverScreen : MonoBehaviour
     }
     public void RestartButton()
     {
-        SceneManager.LoadScene("GamePlay");
+        SceneManager.LoadScene("GamePlay_1");
     }
     public void MainButton()
     {

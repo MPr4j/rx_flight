@@ -9,7 +9,7 @@ public class MoveBTN : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private GameObject playerObj;
     private Rigidbody2D rigidbody;
     private Vector2 moveDirection = Vector2.up;
-    public float moveSpeed = 1000f;
+    public float moveSpeed = 250f;
 
     private bool move = false;
     // Start is called before the first frame update
@@ -27,7 +27,8 @@ public class MoveBTN : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (move) {
             float zAngele = playerObj.transform.rotation.eulerAngles.z;
-            moveDirection = Quaternion.Euler(0, 0, zAngele) * Vector2.up;
+            moveDirection = (Quaternion.Euler(0, 0, zAngele) * Vector2.up) ;
+            moveDirection.Normalize();
             rigidbody.velocity = moveDirection * moveSpeed * Time.deltaTime;
         }
         else
