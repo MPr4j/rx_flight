@@ -56,15 +56,20 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Samples\Universal RP\13.1.9\URP Package Samples\CameraStacking\3D Skybox\Scripts\SkyboxCamera.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
+    <Compile Include="Assets\Samples\Universal RP\13.1.9\URP Package Samples\SharedAssets\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Scripts\BackgroundHandler.cs" />
+    <Compile Include="Assets\Samples\Universal RP\13.1.9\URP Package Samples\SharedAssets\Scripts\AutoLoadPipelineAsset.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\FacePlayer.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyFireSpawner.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
     <Compile Include="Assets\Scripts\GraphManager\PathFindingTest.cs" />
+    <Compile Include="Assets\Samples\Universal RP\13.1.9\URP Package Samples\LensFlares\Scripts\ScreenSpacePlacement.cs" />
     <Compile Include="Assets\Scripts\com\devandroid\AndroidVibration.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\DynamicJoystick.cs" />
     <Compile Include="Assets\Scripts\com\devandroid\IOSVibration.cs" />
+    <Compile Include="Assets\Samples\Universal RP\13.1.9\URP Package Samples\RendererFeatures\KeepFrame\KeepFrameFeature.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\ObjCollector.cs" />
     <Compile Include="Assets\Scripts\FireMovement.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\GameManager.cs" />
@@ -78,6 +83,8 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\GameOverScreen.cs" />
     <Compile Include="Assets\Lightning\ChainLightning.cs" />
+    <Compile Include="Assets\Scripts\RunParticle.cs" />
+    <Compile Include="Assets\Scripts\AccesoryScripts\ShieldScript.cs" />
     <Compile Include="Assets\Lightning\LightningBolt.cs" />
     <Compile Include="Assets\Scripts\UIScripts\MoveBTN.cs" />
     <Compile Include="Assets\Scripts\GeneralScripts\MainMenu.cs" />
@@ -97,8 +104,10 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\SpawnerInterface.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\CircleAroundPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Samples\Universal RP\13.1.9\URP Package Samples\SharedAssets\Shaders\3DText.shader" />
     <None Include="Assets\Sprites\Fonts\font info.txt" />
   </ItemGroup>
   <ItemGroup>

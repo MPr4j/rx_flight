@@ -6,8 +6,18 @@ using UnityEngine;
 public class FacePlayer : MonoBehaviour
 {
     Transform player;
-    public float rotationSpeed = 90f; 
+    public float rotationSpeed = 90f;
     // Update is called once per frame
+
+    [SerializeField]
+    private GameObject explosionPrefab;
+
+    private AudioSource explosionAudio;
+
+    private void Awake()
+    {
+        explosionAudio = GetComponent<AudioSource>();    
+    }
     void Update()
     {
         Look () ;
@@ -48,7 +58,12 @@ public class FacePlayer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Fire")
         {
-            Destroy(gameObject);
+            if (explosionAudio != null)
+            {
+                explosionAudio.Play();
+            }
+            GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position , Quaternion.identity);
+           
             ScoreManeger.instance.AddPoint();
         }
     }

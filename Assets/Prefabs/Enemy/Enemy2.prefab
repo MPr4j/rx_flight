@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8666340967335613286}
   - component: {fileID: 9093355030531597585}
   - component: {fileID: 1337833957498415738}
-  - component: {fileID: 5756246418413321229}
+  - component: {fileID: 72291446}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -117,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 5125172093490963113}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &9093355030531597585
 Rigidbody2D:
@@ -166,7 +166,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5756246418413321229
+--- !u!114 &72291446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8666340967335613209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c4cf0b0e4ce0604ca67ebbafb799ed1, type: 3}
+  m_Script: {fileID: 11500000, guid: 940206467777a464eae96c0bd22624d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextMove: {fileID: 0}
+  rotationSpeed: 90
+  circleRadius: 15
+  circleSpeed: 2
