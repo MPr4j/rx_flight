@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StateButtonsHandler : MonoBehaviour
 {
-    public string buttonKey; // The key of button to store it's state in PlayerPrefs
+    public string buttonKey ; // The key of button to store it's state in PlayerPrefs
     // Start is called before the first frame update
 
     [SerializeField]

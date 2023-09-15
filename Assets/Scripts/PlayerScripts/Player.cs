@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 
@@ -11,6 +12,10 @@ public class Player : MonoBehaviour
     private GameObject fireShape;
     private AudioSource a_AudioSource;
 
+    private Vector2 moveDirection = Vector2.zero;
+    private Rigidbody2D rigidbody;
+
+    
     private void Awake()
     {
         a_AudioSource = GetComponent<AudioSource>();
@@ -29,23 +34,25 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("EnemyFire"))
         {
             Destroy(gameObject);
+            CrossPlatformVibration.Vibrate(100);
             GameManager.GetInstance().NotifyGameIsOver();
         }
     }
-    public void  HandleTouch()
-    {
-            if (Input.touchCount > 0)
-            {
-                InstantiateNewFire(fireShape);
-                a_AudioSource.Play();
-            }
-    }
+  
 
-    void InstantiateNewFire(GameObject fireShape)
+    public void InstantiateNewFire()
     {
 
         Instantiate(fireShape, transform.position, transform.rotation);
+        a_AudioSource.Play();
     }
+
+  
+    public void Stop()
+    {
+        
+    }
+
 }
 
   

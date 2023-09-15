@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfbd1550617da543a22eef7f921df8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonKey: active+vibration
+  buttonKey: k_vibration
   activeState: {fileID: 21300000, guid: da58a9d6fac1c31489bf2c63ec171db6, type: 3}
   disactiveState: {fileID: 21300000, guid: 4793ba847cac9e149b097e438afac702, type: 3}
 --- !u!1 &436802460
@@ -2229,6 +2229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304128657e302da4ba5dda27be88c49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefabToSpawn: {fileID: 9143370989656166078, guid: 29710a49f2026224a9243418c78f6dd0, type: 3}
 --- !u!4 &888185987
 Transform:
   m_ObjectHideFlags: 0
@@ -2535,7 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfbd1550617da543a22eef7f921df8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonKey: activate_sound
+  buttonKey: k_sound
   activeState: {fileID: 21300000, guid: fdd6c9b8c8c76d54988a498e41cb176d, type: 3}
   disactiveState: {fileID: 21300000, guid: eb2a58e0ab6f2a048a49054bcdd66e40, type: 3}
 --- !u!1 &1030408928
@@ -2794,7 +2795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfbd1550617da543a22eef7f921df8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonKey: active_notif
+  buttonKey: k_notification
   activeState: {fileID: 21300000, guid: c9cdd9a86d7f93f43886236dbb29ba75, type: 3}
   disactiveState: {fileID: 21300000, guid: c7908d912533b8d45a577b3c8c86bfaf, type: 3}
 --- !u!114 &1129616118
@@ -4143,7 +4144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfbd1550617da543a22eef7f921df8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonKey: active-music
+  buttonKey: k_music
   activeState: {fileID: 21300000, guid: 6463a3b0682496b4686532e039bbf915, type: 3}
   disactiveState: {fileID: 21300000, guid: 5033f00e5ec5d0b44b18f02c0b048a68, type: 3}
 --- !u!1 &2134589211

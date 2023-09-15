@@ -5,8 +5,7 @@ using UnityEngine.EventSystems;
 
 public class JoystickHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    // Start is called before the first frame update
-    [SerializeField]
+    
     private GameObject playerObj;
     private Rigidbody2D playerRigidBody2D;
     private bool isTouhcingJoystick = false;
@@ -18,17 +17,16 @@ public class JoystickHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     void Start()
     {
+        playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null)
         {
             playerRigidBody2D = playerObj.GetComponent<Rigidbody2D>();
-
         }
-   
-     
     }
 
     public void GameOverJoystick()
     {
+
     }
     // Update is called once per frame
     void Update()
@@ -60,12 +58,8 @@ public class JoystickHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 float vertical = joystick.Vertical;
                 float zAngele = Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg;
                 Quaternion disiredRot = Quaternion.Euler(0, 0, -zAngele);
-                playerObj.transform.rotation = Quaternion.RotateTowards(playerObj.transform.rotation, disiredRot, rotSpeed * Time.deltaTime);
-
-                moveDirection = Quaternion.Euler(0, 0, -zAngele) * Vector2.up;
-                playerRigidBody2D.velocity = moveDirection * moveSpeed * Time.deltaTime;
+                playerObj.transform.rotation = Quaternion.RotateTowards(playerObj.transform.rotation, disiredRot, rotSpeed * Time.deltaTime);           
             }
-
         }
     }
     public void OnPointerUp(PointerEventData eventData)
@@ -73,7 +67,6 @@ public class JoystickHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if(playerObj != null)
         {
             isTouhcingJoystick = false;
-            playerRigidBody2D.velocity = Vector2.zero;
         }
     
     }
