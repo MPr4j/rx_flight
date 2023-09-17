@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,18 @@ public class GameManager : MonoBehaviour
 
     private GameOverScreen gameOverScreen;
 
+    public static int SelectedMap = 0;
+
+    public enum MAP
+    {
+        GAMEPLAY_1,
+        GAMEPLAY_2,
+        GAMEPLAY_3,
+    }
+
+    public static Dictionary<int, string> gameMap = new Dictionary<int, string>();
+
+    public const string keyMap = "MAP";
     public static bool isVibrationEnabled = false;
 
     [SerializeField]
@@ -22,10 +35,15 @@ public class GameManager : MonoBehaviour
     // Awake function that is called from unity
     private void Awake()
     {
+
+      
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            gameMap.Add((int)MAP.GAMEPLAY_1, "GamePlay_1");
+            gameMap.Add((int)MAP.GAMEPLAY_2, "GamePlay_2");
+            gameMap.Add((int)MAP.GAMEPLAY_3, "GamePlay_3");
         }
         else
         {
@@ -80,8 +98,25 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneChanged;
     }
 
+
+    public void StartGame()
+    {
+
+        // Read choosen map from PlayerPrefs
+        if (PlayerPrefs.HasKey(keyMap))
+        {
+            // Load chosen key
+            SceneManager.LoadScene(gameMap[PlayerPrefs.GetInt(keyMap)]);
+        }
+        else
+        {
+            // Add this key for the first time:  1 == GAMEPLAY_1
+            PlayerPrefs.SetInt(keyMap, 0);
+            SceneManager.LoadScene(gameMap[(int) MAP.GAMEPLAY_1]);
+        } 
+    }
     public void OnSceneChanged(Scene scene,LoadSceneMode mode) {
-        if(scene.name == "GamePlay_1")
+        if(scene.name.Contains("GamePlay"))
         {
            InstantiateNecessaryObjects();
             

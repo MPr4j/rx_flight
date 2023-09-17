@@ -39,22 +39,26 @@ public class CircleAroundPlayer : MonoBehaviour
     void Update()
     {
 
-        // CheckState in every frame
-        getNearThePlayer = GetNearToTheTrackingPosition();
-        
-        if (getNearThePlayer)
+        if (trackingTransform != null)
         {
-            // Rotate towards the tracking position
-            RotateTowardTrackingPosition();
+            // CheckState in every frame
+            getNearThePlayer = GetNearToTheTrackingPosition();
 
-            // Move towards to the tracking position
-            MoveTowardTrackingPosition();
+            if (getNearThePlayer)
+            {
+                // Rotate towards the tracking position
+                RotateTowardTrackingPosition();
+
+                // Move towards to the tracking position
+                MoveTowardTrackingPosition();
+            }
+            else
+            {
+                RotateTowardTrackingPosition();
+                CircleAroundPosition();
+            }
         }
-        else
-        {
-            RotateTowardTrackingPosition();
-            CircleAroundPosition();
-        }
+    
     }
 
     void CircleAroundPosition()

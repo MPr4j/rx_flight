@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("GamePlay_1");
+        GameManager.GetInstance().StartGame();
     }
     public void GameMap()
     {

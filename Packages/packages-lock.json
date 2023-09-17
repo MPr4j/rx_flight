@@ -255,6 +255,12 @@
       },
       "url": "https://packages.unity.com"
     },
+    "release-upm": {
+      "version": "file:C:/Users/Asia LAPTOP/Downloads/UIEffect-4.0.0-preview.9/UIEffect-4.0.0-preview.9",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
