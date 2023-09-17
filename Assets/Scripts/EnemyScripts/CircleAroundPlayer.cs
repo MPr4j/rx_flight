@@ -9,7 +9,7 @@ public class CircleAroundPlayer : MonoBehaviour
 
     public float rotationSpeed = 90f;
     public float circleRadius = 5;
-    public float circleSpeed = 2f;
+    public float circleSpeed = 50f;
 
 
     private float angle = 0f;
@@ -39,29 +39,32 @@ public class CircleAroundPlayer : MonoBehaviour
     void Update()
     {
 
-        // CheckState in every frame
-        getNearThePlayer = GetNearToTheTrackingPosition();
-
-        if (getNearThePlayer)
+        if (trackingTransform != null)
         {
-            // Rotate towards the tracking position
-            RotateTowardTrackingPosition();
+            // CheckState in every frame
+            getNearThePlayer = GetNearToTheTrackingPosition();
 
-            // Move towards to the tracking position
-            MoveTowardTrackingPosition();
+            if (getNearThePlayer)
+            {
+                // Rotate towards the tracking position
+                RotateTowardTrackingPosition();
+
+                // Move towards to the tracking position
+                MoveTowardTrackingPosition();
+            }
+            else
+            {
+                RotateTowardTrackingPosition();
+                CircleAroundPosition();
+            }
         }
-        else
-        {
-            CircleAroundPosition();
-        }
+    
     }
 
     void CircleAroundPosition()
     {
-        Vector2 diff = transform.position - trackingTransform.position;
-        angle += Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        // Calculate the desired position around the player
         Vector3 circlePosition = trackingTransform.position + Quaternion.Euler(0f, 0f, angle) * Vector3.right * circleRadius;
-
         // Move the enemy to the desired position
         transform.position = circlePosition;
 
@@ -88,6 +91,8 @@ public class CircleAroundPlayer : MonoBehaviour
         float zAngle = transform.rotation.eulerAngles.z;
         moveDirection = Quaternion.Euler(0,0,zAngle) * Vector3.up;
         rigidbody.velocity = moveDirection * Time.deltaTime * speedMax;
+        Vector2 diff = transform.position - trackingTransform.position;
+        angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
     }
     bool GetNearToTheTrackingPosition()
     {
@@ -95,7 +100,6 @@ public class CircleAroundPlayer : MonoBehaviour
 
         // Calculate distance from tracking transform and currentPosition
         float distance = Vector2.Distance(currentPosition, trackingTransform.position);
-        print("Distance from tracking position : "+distance);
         return distance > circleRadius;
     }
 }
