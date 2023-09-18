@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyShooting.cs" />
     <Compile Include="Assets\Scripts\GraphManager\Node.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\MoveForward.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\BackBTN.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\CircleAroundPlayer.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\SquaredEnemies.cs" />
     <Compile Include="Assets\Scripts\GraphManager\Graph.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Assets\Scripts\GeneralScripts\GameOverScreen.cs" />
     <Compile Include="Assets\Lightning\ChainLightning.cs" />
     <Compile Include="Assets\Scripts\RunParticle.cs" />
+    <Compile Include="Assets\Scripts\UIScripts\PlanetUIButton.cs" />
     <Compile Include="Assets\Scripts\AccesoryScripts\ShieldScript.cs" />
     <Compile Include="Assets\Lightning\LightningBolt.cs" />
     <Compile Include="Assets\Scripts\UIScripts\MoveBTN.cs" />
@@ -105,8 +107,7 @@
     <Compile Include="Assets\Scripts\PlayerScripts\Player.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\SpawnerInterface.cs" />
-    <Compile Include="Assets\Scripts\UIScripts\PlanetUIButton.cs" />
-    <Compile Include="Assets\Scripts\UIScripts\BackBTN.cs" />
+    <Compile Include="Assets\Scripts\GeneralScripts\AudioManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Sprites\GodGiveUs\Map\Spritesheet\simpleSpace_sheet.xml" />
