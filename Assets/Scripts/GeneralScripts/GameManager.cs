@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public static int SelectedMap = 0;
 
+    private Scene currentScene;
     public enum MAP
     {
         GAMEPLAY_1,
@@ -29,6 +31,19 @@ public class GameManager : MonoBehaviour
     {
         get;
         set;
+    }
+
+    private void LateUpdate()
+    {
+        // Exit from the Scene
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (currentScene.name.Contains("GamePlay"))
+            {
+                // Load 
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
     }
 
 
@@ -122,6 +137,7 @@ public class GameManager : MonoBehaviour
             
            DisableObjectsOnStart();
         }
+        currentScene = scene;
     }
 
 
