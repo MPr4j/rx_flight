@@ -9,7 +9,7 @@ public class MoveBTN : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private GameObject playerObj;
     private Rigidbody2D rigidbody;
     private Vector2 moveDirection = Vector2.up;
-    public float moveSpeed = 250f;
+    public float moveSpeed = 180f;
 
     private bool move = false;
     // Start is called before the first frame update
@@ -33,7 +33,11 @@ public class MoveBTN : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else
         {
+            if (rigidbody != null)
+            {
             rigidbody.velocity = Vector2.zero;
+            }
+
         }
 
     }
