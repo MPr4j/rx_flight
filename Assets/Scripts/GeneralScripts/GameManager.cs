@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public static int SelectedMap = 0;
 
-    private Scene currentScene;
+    public Scene currentScene { get; set; }
     public enum MAP
     {
         GAMEPLAY_1,
