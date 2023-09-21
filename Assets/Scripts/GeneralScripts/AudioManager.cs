@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         {
             case "MainMenu":
                 // Change the audio for the MainMenu scene
-                gameManagerAudioSource.clip = yourMainMenuAudioClip;
+                gameManagerAudioSource.clip = yourMainMenuAudioClip;    
                 gameManagerAudioSource.Play();
                 break;
             case "GamePlay_1":

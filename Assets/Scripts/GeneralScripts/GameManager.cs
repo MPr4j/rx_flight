@@ -8,7 +8,15 @@ public class GameManager : MonoBehaviour
     public delegate void GameIsOver();
     public static event GameIsOver gameIsOver;
 
+    public delegate void ScoreWatcher(int score);
+    public static event ScoreWatcher scoreWatcher;
+
+    public delegate void EnemyWatcher(string enemy);
+    public static event EnemyWatcher enemyWatcher;
+
     private GameOverScreen gameOverScreen;
+
+    public Dictionary<string, int> destroyedEnemies = new Dictionary<string, int>();
 
     public static int SelectedMap = 0;
 
@@ -172,5 +180,15 @@ public class GameManager : MonoBehaviour
         Destroy(move);
         print("Joystick destroyed");
         gameOverScreen.GameOver();
+    }
+    public void NotifyEnemyIsDead(string tag)
+    {
+        enemyWatcher(tag);
+
+        // Add to the Dictionary
+    }
+    public void NotifyScoreIsChanged(int score)
+    {
+        scoreWatcher(score);
     }
 }
