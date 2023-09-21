@@ -46,14 +46,7 @@ public class FacePlayer : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag=="Player")
-        {
-            Destroy(gameObject);
-        }
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Fire")
@@ -63,8 +56,11 @@ public class FacePlayer : MonoBehaviour
                 explosionAudio.Play();
             }
             GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position , Quaternion.identity);
-           
             ScoreManeger.instance.AddPoint();
+        }
+        if (collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
         }
     }
 

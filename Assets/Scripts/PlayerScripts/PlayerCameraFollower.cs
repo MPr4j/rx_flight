@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCameraFollower : MonoBehaviour
 {
-    private Transform player;
+    private Transform playerTransform;
     private Vector3 tempPos;
 
     [SerializeField]
@@ -19,7 +19,11 @@ public class PlayerCameraFollower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if (playerObj != null)
+        {
+            playerTransform = playerObj.transform;
+        }
         cameraHalfWidth = Camera.main.orthographicSize * Camera.main.aspect;
         cameraHalfHeight = Camera.main.orthographicSize;
     }
@@ -29,11 +33,11 @@ public class PlayerCameraFollower : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(player != null)
+        if(playerTransform != null)
         {
             tempPos = transform.position;
-            tempPos.x = Mathf.Clamp(player.position.x, leftBound + cameraHalfWidth, rightBound - cameraHalfWidth);
-            tempPos.y = Mathf.Clamp(player.position.y, bottomBound + cameraHalfHeight, topBound - cameraHalfHeight);
+            tempPos.x = Mathf.Clamp(playerTransform.position.x, leftBound + cameraHalfWidth, rightBound - cameraHalfWidth);
+            tempPos.y = Mathf.Clamp(playerTransform.position.y, bottomBound + cameraHalfHeight, topBound - cameraHalfHeight);
             transform.position = tempPos;
         }
        

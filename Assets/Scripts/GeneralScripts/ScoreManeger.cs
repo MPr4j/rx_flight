@@ -37,7 +37,7 @@ public class ScoreManeger : MonoBehaviour
         {
             PlayerPrefs.SetInt("HeighScore", score);
         }
-
+        GameManager.GetInstance().NotifyScoreIsChanged(score);
     }
     
 }
