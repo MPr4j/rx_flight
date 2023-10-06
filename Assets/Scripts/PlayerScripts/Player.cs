@@ -6,48 +6,104 @@ using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
-
 {
-    [SerializeField]
-    private GameObject fireShape;
-    private AudioSource a_AudioSource;
+    [SerializeField] private GameObject primaryWeapon;
+    [SerializeField] private GameObject secondaryWeapon;
+    private ChainLightning LightningEffect;
 
+    private AudioSource a_AudioSource;
     private Vector2 moveDirection = Vector2.zero;
     private Rigidbody2D rigidbody;
 
-    
+    GameObject lightningObj;
+    bool lightningEnabled = false;
     private void Awake()
     {
         a_AudioSource = GetComponent<AudioSource>();
+
     }
     private void Start()
     {
+        // Subscribe to the GameManager in order to check power ups
+        GameManager.trophyWatcher += TrophyTriggered;
+        if (secondaryWeapon != null )
+        {
+            LightningEffect = secondaryWeapon.GetComponent<ChainLightning>();
+        }
         
     }
     private void Update()
     {
+
+    }
+
+    private void TrophyTriggered(string trohpyTag)
+    {
+        switch(trohpyTag)
+        {
+            case "TStar":
+                ScoreManeger.instance.AddPoint();
+                break;
+            case "TLight":
+                lightningEnabled = true;
+                break;
+            case "THeal":
+                 GameManager.GetInstance().healthSystem.Heal(20);
+                break;
+        }
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")||collision.gameObject.CompareTag("EnemyFire"))
+        float remainedHealth = 100f;
+        switch (collision.gameObject.tag)
+        {
+            case "StoneTiny":
+            case "Enemy":
+            case "EnemyFire":
+                remainedHealth = GameManager.GetInstance().OnDamage(20);
+                lightningEnabled = false;
+                break;
+            case "StoneBig":
+                remainedHealth = GameManager.GetInstance().OnDamage(40);
+                lightningEnabled = false;
+                break;
+            default:
+                /*remainedHealth = GameManager.GetInstance().healthSystem.GetHealhPercentage() * 100;*/
+                break;
+        }
+        if (remainedHealth <= 0)
         {
             Destroy(gameObject);
             CrossPlatformVibration.Vibrate(100);
-            GameManager.GetInstance().NotifyGameIsOver();
         }
+
     }
   
 
-    public void InstantiateNewFire()
+    public void enableFire()
     {
-
-        Instantiate(fireShape, transform.position, transform.rotation);
-        a_AudioSource.Play();
+        if (!lightningEnabled)
+        {
+            Destroy(lightningObj);
+            Instantiate(primaryWeapon, transform.position, transform.rotation);
+            a_AudioSource.Play();
+        }
+        else
+        {
+            if (lightningObj == null)
+            {
+                lightningObj =  Instantiate(secondaryWeapon, transform.position, transform.rotation);
+            }
+           
+        }
+       
     }
-
-  
+    public void disableFire()
+    {
+        lightningEnabled = false;
+    }
     public void Stop()
     {
         

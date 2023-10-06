@@ -24,21 +24,14 @@ public class FireMovement : MonoBehaviour
         rb.velocity = Quaternion.Euler(0, 0, zRotation) * Vector2.up * moveSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Destroy(gameObject);
-        }
-    }
-
+  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag == "Enemy")
         {
-            GameManager.GetInstance().NotifyEnemyIsDead(collision.tag);
             Destroy(gameObject);
             Destroy(collision.gameObject);
+            GameManager.GetInstance().NotifyEnemyIsDead(collision.tag == null ? "Enemy" : collision.tag);
         }
     }
 

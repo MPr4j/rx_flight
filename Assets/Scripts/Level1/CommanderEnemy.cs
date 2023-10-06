@@ -7,17 +7,15 @@ public class CommanderEnemy : MonoBehaviour
     // Start is called before the first frame update
     public List<Transform> nextMoves;
 
-    private float rotationSpeed = 200f;
+    private float rotationSpeed = 400f;
 
     private bool reverse = false;
+
+    public float speed { set; get; } = .5f;
 
     Rigidbody2D rigidbody2;
     void Start()
     {
-        if (nextMoves != null)
-        {
-            transform.position = new Vector3(nextMoves[0].position.x, nextMoves[0].position.y, 0);
-        }
         rigidbody2 = GetComponent<Rigidbody2D>(); 
     }
 
@@ -38,7 +36,14 @@ public class CommanderEnemy : MonoBehaviour
             Transform t = nextMoves[i];
             if (t != null)
             { 
-                if (Vector2.Distance(transform.position, nextMoves[i].position) > 1f)
+                if (Vector2.Distance(transform.position, nextMoves[i].position) < 2f)
+                {
+                    if (!reverse)
+                        i++;
+                    else
+                        i--;
+                }
+                else
                 {
                     
                     if (nextMoves[reverse ? i - 1 : i + 1] != null)
@@ -48,17 +53,10 @@ public class CommanderEnemy : MonoBehaviour
                         float zAngele = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
                         Quaternion disiredRot = Quaternion.Euler(0, 0, zAngele);
                         transform.rotation = Quaternion.RotateTowards(transform.rotation, disiredRot, rotationSpeed * Time.deltaTime);
-                        transform.position += new Vector3(t.position.x - transform.position.x, t.position.y - transform.position.y, 0) * Time.deltaTime * 1f;
+                        transform.position += new Vector3(t.position.x - transform.position.x, t.position.y - transform.position.y, 0) * Time.deltaTime * speed;
                     }
                 }
-                else
-                {
-
-                    if (!reverse)
-                        i++;
-                    else
-                        i--;
-                }
+               
                
             }
          

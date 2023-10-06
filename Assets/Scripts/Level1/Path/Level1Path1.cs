@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Level1Path1 : MonoBehaviour
 {
-    int gridSizeX = 10; // Number of squares in the X-axis
-    int gridSizeY = 10; // Number of squares in the Y-axis
-
+    int gridSizeX = 12; // Number of squares in the X-axis
+    int gridSizeY = 12; // Number of squares in the Y-axis
+    
     private Graph graph;
     private SearchGraph searchGraph;
 
@@ -18,16 +18,25 @@ public class Level1Path1 : MonoBehaviour
 
     [SerializeField] private GameObject spawnerLocation;
     [SerializeField] private float spawnDelay = 1f;
+    [SerializeField] private float startDelay = 15f;
+
     [SerializeField] public GameObject commander = null;
 
     [SerializeField]  private Sprite sprite;
 
     private int producedEnemiesCount = 0;
     private int totalCount = 0;
+    private float membersSpeed = 1f;
+    private int MAX_Number = 5;
+    private float MAX_SPEED = 1f;
+    private const float RATE_IMPROVEMENT = .5f;
+    private int ONCE_RATE_IMPROVEMENT = 3;
 
+    
     private void Awake()
     {
         GameManager.scoreWatcher += ScoreChanged;
+        
     }
 
     void ScoreChanged(int score)
@@ -38,18 +47,20 @@ public class Level1Path1 : MonoBehaviour
     {
         StartCoroutine(SpwanNewEnemy());
         CreateGrid();
-        int[,] map = new int[10, 10]
+        int[,] map = new int[12, 12]
        {
-            { 0,1,1,1,1,1,1,0,0,0},
-            { 0,0,0,0,0,1,1,0,1,0},
-            { 1,1,1,1,0,1,1,0,1,0},
-            { 0,0,0,0,0,1,0,0,1,0},
-            { 0,1,1,1,1,1,0,1,1,0},
-            { 0,0,0,0,0,0,0,1,1,0},
-            { 1,1,1,1,1,1,1,1,1,0},
-            { 0,0,0,0,1,0,0,1,1,0},
-            { 0,1,0,1,0,0,0,1,1,0},
-            { 0,1,0,0,0,1,0,0,0,0},
+            { 0,1,1,1,1,1,1,0,0,0,1,1},
+            { 0,0,0,0,0,1,1,0,1,0,1,1},
+            { 1,1,1,1,0,1,1,0,1,0,1,1},
+            { 0,0,0,0,0,1,0,0,1,0,1,1},
+            { 0,1,1,1,1,1,0,1,1,0,1,1},
+            { 0,0,0,0,0,0,0,1,1,0,1,1},
+            { 1,1,1,1,1,1,1,1,1,0,1,1},
+            { 0,0,0,0,1,0,0,1,1,0,1,1},
+            { 0,1,0,1,0,0,0,1,1,0,1,1},
+            { 0,1,0,0,0,1,0,0,0,0,1,1},
+            { 0,1,0,0,0,1,0,0,0,0,1,1},
+            { 0,1,0,0,0,1,0,0,0,0,1,1},
        };
         graph = new Graph(map);
 
@@ -65,9 +76,10 @@ public class Level1Path1 : MonoBehaviour
         for(int i =0 ;i < searchGraph.path.Count; i++)
         {
             int index = Int32.Parse(searchGraph.path[i].label);
-/*            grid[index].GetComponent<SpriteRenderer>().sortingLayerName = "Enemy";
-*//*            grid[index].GetComponent<SpriteRenderer>().sprite = sprite;
-*/            path.Add(grid[index].transform);
+           /* grid[index].GetComponent<SpriteRenderer>().sortingLayerName = "Enemy";*/
+            /*            grid[index].GetComponent<SpriteRenderer>().sprite = sprite;
+            */
+            path.Add(grid[index].transform);
         }
     
     }
@@ -122,14 +134,22 @@ public class Level1Path1 : MonoBehaviour
     IEnumerator SpwanNewEnemy()
     {
 
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(startDelay);
         while (true)
         {
-            if (totalCount > 5)
+            if (MAX_Number == 30)
                 break;
-            if (producedEnemiesCount == 3)
+            if (totalCount == MAX_Number)
+            {
+                yield return new WaitForSeconds(30f);
+                MAX_Number += ((int)(MAX_Number * RATE_IMPROVEMENT));
+                totalCount = 0;
+            }
+
+            if (producedEnemiesCount == ONCE_RATE_IMPROVEMENT)
             {
                 producedEnemiesCount = 0;
+                ONCE_RATE_IMPROVEMENT++;
             }
             else
             {
@@ -137,6 +157,7 @@ public class Level1Path1 : MonoBehaviour
             }
             GameObject gameObject = GameObject.Instantiate(commander, spawnerLocation.transform);
             CommanderEnemy comEnemy = gameObject.GetComponent<CommanderEnemy>() as CommanderEnemy;
+            comEnemy.speed = membersSpeed;
             comEnemy.nextMoves = path;
             producedEnemiesCount++;
             totalCount++;

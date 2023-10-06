@@ -14,11 +14,16 @@ public class GameManager : MonoBehaviour
     public delegate void EnemyWatcher(string enemy);
     public static event EnemyWatcher enemyWatcher;
 
+    public delegate void TrophyWatcher(string trophy);
+    public static event TrophyWatcher trophyWatcher;
+
     private GameOverScreen gameOverScreen;
 
     public Dictionary<string, int> destroyedEnemies = new Dictionary<string, int>();
 
     public static int SelectedMap = 0;
+
+    public HealthSystem healthSystem;
 
     public Scene currentScene { get; set; }
     public enum MAP
@@ -108,6 +113,10 @@ public class GameManager : MonoBehaviour
     }
     public static GameManager GetInstance()
     {
+        if (Instance == null)
+        {
+            print("Game manager is null");
+        }
         return Instance;
     }
 
@@ -124,7 +133,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-
         // Read choosen map from PlayerPrefs
         if (PlayerPrefs.HasKey(keyMap))
         {
@@ -144,6 +152,7 @@ public class GameManager : MonoBehaviour
            InstantiateNecessaryObjects();
             
            DisableObjectsOnStart();
+           healthSystem = new HealthSystem();
         }
         currentScene = scene;
     }
@@ -183,12 +192,47 @@ public class GameManager : MonoBehaviour
     }
     public void NotifyEnemyIsDead(string tag)
     {
-        enemyWatcher(tag);
+       if (enemyWatcher != null)
+        {
+
+            enemyWatcher(tag);  
+        }
+        
 
         // Add to the Dictionary
     }
     public void NotifyScoreIsChanged(int score)
     {
-        scoreWatcher(score);
+        if (scoreWatcher != null)
+        { 
+            scoreWatcher(score);
+        }
+    }
+
+    public float OnDamage(float damage)
+    {
+        print("OnDamage + " + healthSystem);
+        float remainedHealth = 0f;
+        if (healthSystem != null)
+        {
+            remainedHealth = healthSystem.Damage(damage);
+            print("OnDamage + " + remainedHealth);
+            if (remainedHealth <= 0)
+            {
+                NotifyGameIsOver();
+            }
+
+            
+        }
+
+        return remainedHealth;
+    }
+
+    public void NotifyTrophyHasTriggered(string trophy)
+    {
+        if (trophyWatcher != null)
+        {            
+            trophyWatcher(trophy);
+        }
     }
 }

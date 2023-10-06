@@ -7,6 +7,12 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+
+    // Define your audio clips here
+    public AudioClip yourMainMenuAudioClip;
+    public AudioClip yourGamePlay1AudioClip;
+    public AudioClip yourGamePlay2AudioClip;
+    public AudioClip yourGamePlay3AudioClip;
     // Reference to the AudioSource in your GameManager
     public AudioSource gameManagerAudioSource;
 
@@ -34,22 +40,26 @@ public class AudioManager : MonoBehaviour
         {
             case "MainMenu":
                 // Change the audio for the MainMenu scene
+                gameManagerAudioSource.Stop();
                 gameManagerAudioSource.clip = yourMainMenuAudioClip;    
                 gameManagerAudioSource.Play();
                 break;
             case "GamePlay_1":
                 // Change the audio for the GamePlay_1 scene
-                gameManagerAudioSource.clip = yourGamePlayAudioClip;
+                gameManagerAudioSource.Stop();
+                gameManagerAudioSource.clip = yourGamePlay1AudioClip;
                 gameManagerAudioSource.Play();
                 break;
             case "GamePlay_2":
                 // Change the audio for the GamePlay_2 scene
-                gameManagerAudioSource.clip = yourGamePlayAudioClip;
+                gameManagerAudioSource.Stop();
+                gameManagerAudioSource.clip = yourGamePlay2AudioClip;
                 gameManagerAudioSource.Play();
                 break;
             case "GamePlay_3":
                 // Change the audio for the GamePlay_3 scene
-                gameManagerAudioSource.clip = yourGamePlayAudioClip;
+                gameManagerAudioSource.Stop();
+                gameManagerAudioSource.clip = yourGamePlay3AudioClip;
                 gameManagerAudioSource.Play();
                 break;
 
@@ -58,7 +68,4 @@ public class AudioManager : MonoBehaviour
         // Add more conditions for other scenes as needed
     }
 
-    // Define your audio clips here
-    public AudioClip yourMainMenuAudioClip;
-    public AudioClip yourGamePlayAudioClip;
 }

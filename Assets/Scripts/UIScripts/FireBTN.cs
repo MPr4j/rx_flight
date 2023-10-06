@@ -1,11 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class FireBTN : MonoBehaviour
+public class FireBTN : MonoBehaviour , IPointerDownHandler, IPointerUpHandler
 {
     private GameObject playerObj;
     Player player;
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if(player != null)
+        {
+            player.enableFire();
+        }
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+       
+    }
+
     public void Start()
     {
         playerObj = GameObject.FindWithTag("Player");
@@ -13,14 +28,5 @@ public class FireBTN : MonoBehaviour
             player = playerObj.GetComponent<Player>();
 
     }
-    public void OnClick()
-    {
-        
-            if (player != null)
-            {
-                player.InstantiateNewFire();
-            }
-        
-
-    }
+   
 }

@@ -46,23 +46,21 @@ public class FacePlayer : MonoBehaviour
     }
 
 
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Fire")
+        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player")
         {
             if (explosionAudio != null)
             {
                 explosionAudio.Play();
             }
             GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position , Quaternion.identity);
-            ScoreManeger.instance.AddPoint();
+            /*ScoreManeger.instance.AddPoint();*/
         }
-        if (collision.gameObject.tag == "Player")
-        {
-            Destroy(gameObject);
-        }
+       
     }
+ 
 
 
 

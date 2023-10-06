@@ -1306,8 +1306,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 0.5529412}
+        key0: {r: 1, g: 0, b: 0, a: 1}
+        key1: {r: 0, g: 0.008920193, b: 1, a: 0.5529412}
         key2: {r: 0, g: 0, b: 0, a: 1}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -5019,7 +5019,7 @@ Transform:
   - {fileID: 1258963320}
   - {fileID: 1984914959}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &9143370989656166065
 Rigidbody2D:
@@ -5097,7 +5097,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0001058b2ea7c4191d839a19665656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireShape: {fileID: 5542872285089472892, guid: 54e54f7733d7f274da47e43a3e3095d5, type: 3}
+  primaryWeapon: {fileID: 5542872285089472892, guid: 54e54f7733d7f274da47e43a3e3095d5, type: 3}
+  secondaryWeapon: {fileID: 6416539196300755350, guid: 8e10a650d9de1ab4d99c8d84cdabd665, type: 3}
 --- !u!82 &8466289230307140617
 AudioSource:
   m_ObjectHideFlags: 0

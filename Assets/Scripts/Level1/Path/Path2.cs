@@ -16,13 +16,20 @@ public class Path2 : MonoBehaviour
 
 
     [SerializeField] private GameObject spawnerLocation;
-    [SerializeField] private float spawnDelay = 1f;
+    [SerializeField] private float spawnDelay = .01f;
+    [SerializeField] private float startDelay = 120f;
     [SerializeField] public GameObject commander = null;
 
     [SerializeField] private Sprite sprite;
 
+
     private int producedEnemiesCount = 0;
     private int totalCount = 0;
+    private float membersSpeed = 1f;
+    private int MAX_Number = 5;
+    private float MAX_SPEED = 3f;
+    private const float RATE_IMPROVEMENT = .5f;
+    private int ONCE_RATE_IMPROVEMENT = 3;
 
     private void Awake()
     {
@@ -121,14 +128,23 @@ public class Path2 : MonoBehaviour
     IEnumerator SpwanNewEnemy()
     {
 
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(startDelay);
         while (true)
         {
-            if (totalCount > 10)
+            if (MAX_Number == 30)
                 break;
-            if (producedEnemiesCount == 3)
+            if (totalCount == MAX_Number)
+            {
+                yield return new WaitForSeconds(30f);
+                MAX_Number += ((int) (MAX_Number * RATE_IMPROVEMENT));
+                
+                totalCount = 0;
+            }
+                
+            if (producedEnemiesCount == ONCE_RATE_IMPROVEMENT)
             {
                 producedEnemiesCount = 0;
+                ONCE_RATE_IMPROVEMENT++;
             }
             else
             {
@@ -136,10 +152,20 @@ public class Path2 : MonoBehaviour
             }
             GameObject gameObject = GameObject.Instantiate(commander, spawnerLocation.transform);
             CommanderEnemy comEnemy = gameObject.GetComponent<CommanderEnemy>() as CommanderEnemy;
+            comEnemy.speed = membersSpeed;
             comEnemy.nextMoves = path;
             producedEnemiesCount++;
             totalCount++;
         }
     }
-
+    IEnumerator IncreaseSpeed()
+    {
+        while (true)
+        {
+            if (membersSpeed == MAX_SPEED)
+                break;
+            yield return new WaitForSeconds(15f);
+            membersSpeed += .3f;
+        }
+    }
 }
