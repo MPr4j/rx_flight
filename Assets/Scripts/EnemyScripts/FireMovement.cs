@@ -29,9 +29,9 @@ public class FireMovement : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag == "Enemy")
         {
+            GameManager.GetInstance().NotifyEnemyIsDead(collision.tag == null ? "Enemy" : collision.tag, collision.transform);
             Destroy(gameObject);
             Destroy(collision.gameObject);
-            GameManager.GetInstance().NotifyEnemyIsDead(collision.tag == null ? "Enemy" : collision.tag);
         }
     }
 

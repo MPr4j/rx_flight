@@ -54,7 +54,7 @@ public class StoneMovement : MonoBehaviour
 
     IEnumerator SelfDestroy()
     {
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(20f);
         Destroy(gameObject);
     }
 }

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject secondaryWeapon;
     private ChainLightning LightningEffect;
 
+    [SerializeField] private Transform fireLocationToSpawn;
     private AudioSource a_AudioSource;
     private Vector2 moveDirection = Vector2.zero;
     private Rigidbody2D rigidbody;
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
             case "THeal":
                  GameManager.GetInstance().healthSystem.Heal(20);
                 break;
+                
         }
     }
 
@@ -64,10 +66,12 @@ public class Player : MonoBehaviour
             case "EnemyFire":
                 remainedHealth = GameManager.GetInstance().OnDamage(20);
                 lightningEnabled = false;
+                CrossPlatformVibration.Vibrate(100);
                 break;
             case "StoneBig":
                 remainedHealth = GameManager.GetInstance().OnDamage(40);
                 lightningEnabled = false;
+                CrossPlatformVibration.Vibrate(100);
                 break;
             default:
                 /*remainedHealth = GameManager.GetInstance().healthSystem.GetHealhPercentage() * 100;*/
@@ -76,7 +80,6 @@ public class Player : MonoBehaviour
         if (remainedHealth <= 0)
         {
             Destroy(gameObject);
-            CrossPlatformVibration.Vibrate(100);
         }
 
     }
@@ -87,14 +90,17 @@ public class Player : MonoBehaviour
         if (!lightningEnabled)
         {
             Destroy(lightningObj);
-            Instantiate(primaryWeapon, transform.position, transform.rotation);
-            a_AudioSource.Play();
+            Instantiate(primaryWeapon, fireLocationToSpawn.position, fireLocationToSpawn.rotation);
+            if (GameManager.constants[Constants.KeySound])
+            {
+                a_AudioSource.Play();
+            }
         }
         else
         {
             if (lightningObj == null)
             {
-                lightningObj =  Instantiate(secondaryWeapon, transform.position, transform.rotation);
+                lightningObj =  Instantiate(secondaryWeapon, fireLocationToSpawn.position, transform.rotation);
             }
            
         }

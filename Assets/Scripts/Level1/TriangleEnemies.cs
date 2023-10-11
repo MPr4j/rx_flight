@@ -46,7 +46,7 @@ public class TriangleEnemies : MonoBehaviour
     {
         GameManager.enemyWatcher += EnemyDeadWatcher;
     }
-    private void EnemyDeadWatcher(string tag)
+    private void EnemyDeadWatcher(string tag, Transform killedPosition)
     {
         if (tag == TAG)
         {
@@ -154,7 +154,7 @@ public class TriangleEnemies : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(4);
-            GameObject gObj = gameObjects[Random.RandomRange(0, gameObjects.Count)];
+            GameObject gObj = gameObjects[Random.Range(0, gameObjects.Count)];
             if (gObj == null)
             {
                 print("This object is null " + gameObjects.Count + " " );

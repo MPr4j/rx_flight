@@ -15,12 +15,21 @@ public class HealthSystem
     }
     public float Heal(float heal)
     {
+
         health += heal;
+        if (health > MAX_HEALTH)
+        {
+            health = MAX_HEALTH;
+        }
         return health; 
     }
     public float Damage(float damage)
     {
         health -= damage;
+        if (health < 0)
+        {
+            health = 0;
+        }
         return health;
     }
 

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public delegate void ScoreWatcher(int score);
     public static event ScoreWatcher scoreWatcher;
 
-    public delegate void EnemyWatcher(string enemy);
+    public delegate void EnemyWatcher(string enemy,Transform position);
     public static event EnemyWatcher enemyWatcher;
 
     public delegate void TrophyWatcher(string trophy);
@@ -36,7 +36,10 @@ public class GameManager : MonoBehaviour
     public static Dictionary<int, string> gameMap = new Dictionary<int, string>();
 
     public const string keyMap = "MAP";
-    public static bool isVibrationEnabled = false;
+    public static Dictionary<string, bool> constants = new Dictionary<string, bool>()
+    {
+
+    };
 
     [SerializeField]
     private GameObject playerPrefabToSpawn;
@@ -63,29 +66,24 @@ public class GameManager : MonoBehaviour
     // Awake function that is called from unity
     private void Awake()
     {
-
-      
+     
         if (Instance == null)
         {
+            Constants.Init();
+            ConstantsHolder.RetreiveConstantsFromPlayerPrefs();
             Instance = this;
             DontDestroyOnLoad(gameObject);
             gameMap.Add((int)MAP.GAMEPLAY_1, "GamePlay_1");
             gameMap.Add((int)MAP.GAMEPLAY_2, "GamePlay_2");
             gameMap.Add((int)MAP.GAMEPLAY_3, "GamePlay_3");
+   
         }
         else
         {
             Destroy(gameObject);
         }
 
-        if (!isKeyAlive(Constants.KeyVibration))
-        {
-            EnableVibration();
-        }
-        else
-        {
-            isVibrationEnabled = GetUserBooleanPref(Constants.KeyVibration) == 0 ? false : true;
-        }
+     
         
     }
 
@@ -101,16 +99,7 @@ public class GameManager : MonoBehaviour
 
     public int GetUserBooleanPref(string key) { return PlayerPrefs.GetInt(key); }
    
-    public void EnableVibration()
-    {
-        isVibrationEnabled = true;
-        SaveUserBooleanPrefs(Constants.KeyVibration, 1);
-    }
-    public void DisableVibration()
-    {
-        isVibrationEnabled = false;
-        SaveUserBooleanPrefs(Constants.KeyVibration, 0);
-    }
+  
     public static GameManager GetInstance()
     {
         if (Instance == null)
@@ -190,12 +179,12 @@ public class GameManager : MonoBehaviour
         print("Joystick destroyed");
         gameOverScreen.GameOver();
     }
-    public void NotifyEnemyIsDead(string tag)
+    public void NotifyEnemyIsDead(string tag, Transform killedPosition)
     {
        if (enemyWatcher != null)
         {
 
-            enemyWatcher(tag);  
+            enemyWatcher(tag,killedPosition);  
         }
         
 
