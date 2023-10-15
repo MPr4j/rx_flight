@@ -12,7 +12,10 @@ public class SquaredEnemies : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
     private List<Vector2> targets = new List<Vector2>();
-    // Start is called before the first frame update
+
+    [SerializeField]
+    private List<Transform> spawnerLocations;
+
     void Start()
     {
         CreateGridAndTransforms();

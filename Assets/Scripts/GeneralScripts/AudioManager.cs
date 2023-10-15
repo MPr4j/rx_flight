@@ -7,6 +7,12 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
+
+    // Define your audio clips here
+    public AudioClip yourMainMenuAudioClip;
+    public AudioClip yourGamePlay1AudioClip;
+    public AudioClip yourGamePlay2AudioClip;
+    public AudioClip yourGamePlay3AudioClip;
     // Reference to the AudioSource in your GameManager
     public AudioSource gameManagerAudioSource;
 
@@ -27,38 +33,43 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-      
-
-        // Check the scene name and change the audio as needed
-        switch (scene.name)
+        ConstantsHolder.RetreiveConstantsFromPlayerPrefs();
+      print(GameManager.constants[Constants.KeyMusic]);
+      if (GameManager.constants[Constants.KeyMusic])
         {
-            case "MainMenu":
-                // Change the audio for the MainMenu scene
-                gameManagerAudioSource.clip = yourMainMenuAudioClip;    
-                gameManagerAudioSource.Play();
-                break;
-            case "GamePlay_1":
-                // Change the audio for the GamePlay_1 scene
-                gameManagerAudioSource.clip = yourGamePlayAudioClip;
-                gameManagerAudioSource.Play();
-                break;
-            case "GamePlay_2":
-                // Change the audio for the GamePlay_2 scene
-                gameManagerAudioSource.clip = yourGamePlayAudioClip;
-                gameManagerAudioSource.Play();
-                break;
-            case "GamePlay_3":
-                // Change the audio for the GamePlay_3 scene
-                gameManagerAudioSource.clip = yourGamePlayAudioClip;
-                gameManagerAudioSource.Play();
-                break;
+            
+            // Check the scene name and change the audio as needed
+            switch (scene.name)
+            {
+                case "MainMenu":
+                    // Change the audio for the MainMenu scene
+                    gameManagerAudioSource.Stop();
+                    gameManagerAudioSource.clip = yourMainMenuAudioClip;
+                    gameManagerAudioSource.Play();
+                    break;
+                case "GamePlay_1":
+                    // Change the audio for the GamePlay_1 scene
+                    gameManagerAudioSource.Stop();
+                    gameManagerAudioSource.clip = yourGamePlay1AudioClip;
+                    gameManagerAudioSource.Play();
+                    break;
+                case "GamePlay_2":
+                    // Change the audio for the GamePlay_2 scene
+                    gameManagerAudioSource.Stop();
+                    gameManagerAudioSource.clip = yourGamePlay2AudioClip;
+                    gameManagerAudioSource.Play();
+                    break;
+                case "GamePlay_3":
+                    // Change the audio for the GamePlay_3 scene
+                    gameManagerAudioSource.Stop();
+                    gameManagerAudioSource.clip = yourGamePlay3AudioClip;
+                    gameManagerAudioSource.Play();
+                    break;
 
-                
+
+            }
         }
         // Add more conditions for other scenes as needed
     }
 
-    // Define your audio clips here
-    public AudioClip yourMainMenuAudioClip;
-    public AudioClip yourGamePlayAudioClip;
 }

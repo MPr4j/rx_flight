@@ -8,7 +8,7 @@ public class EnemyShooting : MonoBehaviour
     private GameObject fireShape;
     private GameObject playerObj;
     [SerializeField]
-    private int fireRate = 1;
+    private int fireDelay = 1;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class EnemyShooting : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(fireRate);
+            yield return new WaitForSeconds(fireDelay);
             if (playerObj!=null)
             {
                 InstantiateNewFire(fireShape);

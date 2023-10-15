@@ -4,12 +4,28 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Planet
   - Enemy
-  - GameOver
-  - UI
+  - Bonus
+  - Projectile
+  - Score
+  - Health
+  - CoinsText
+  - Coin
+  - PlayerRay
+  - Rocket
   - Fire
-  - EnemyFire
+  - Lightning
+  - UI
+  - StoneBig
+  - GameOver
+  - TLight
+  - TStar
   - Joystick
+  - THeal
+  - EnemyFire
+  - Triangle
+  - StoneTiny
   layers:
   - Default
   - TransparentFX
@@ -17,8 +33,8 @@ TagManager:
   - 
   - Water
   - UI
-  - MiniMap
-  - MiniMap_p
+  - 
+  - 
   - 
   - 
   - 
@@ -47,12 +63,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 2855171429
+  - name: Background
+    uniqueID: 1947543829
+    locked: 0
+  - name: Planets
+    uniqueID: 4094135763
+    locked: 0
+  - name: Projectile
+    uniqueID: 1111697911
     locked: 0
   - name: Enemy
-    uniqueID: 28069111
+    uniqueID: 1152134415
     locked: 0
-  - name: Fire
-    uniqueID: 2594790073
+  - name: Bonus
+    uniqueID: 689362467
+    locked: 0
+  - name: Player
+    uniqueID: 2402381985
+    locked: 0
+  - name: VFX
+    uniqueID: 738997965
     locked: 0

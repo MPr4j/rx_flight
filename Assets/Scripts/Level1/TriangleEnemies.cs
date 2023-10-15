@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,7 +11,7 @@ public class TriangleEnemies : MonoBehaviour
     // AnimationCurve to have ping pong style in position transitions
     [SerializeField] private AnimationCurve _curve;
     private float _current, _target;
-    
+
 
     // Speed of movement of the group of enemies
     private float _speed = .5f;
@@ -38,11 +39,14 @@ public class TriangleEnemies : MonoBehaviour
     private List<GameObject> gameObjects = new List<GameObject>();
     // Start is called before the first frame update
 
+    [SerializeField]
+    private List<Transform> spawnerLocations;
+
     private void Awake()
     {
         GameManager.enemyWatcher += EnemyDeadWatcher;
     }
-    private void EnemyDeadWatcher(string tag)
+    private void EnemyDeadWatcher(string tag, Transform killedPosition)
     {
         if (tag == TAG)
         {
@@ -56,6 +60,13 @@ public class TriangleEnemies : MonoBehaviour
     }
     void Start()
     {
+        // Start creating enemies after a delay
+        StartCoroutine(StartJobWithDelay(2f));
+    }
+
+    IEnumerator StartJobWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         // Make the Grid 
         CreateGridAndTransforms();
 
@@ -90,9 +101,7 @@ public class TriangleEnemies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
+        
     }
 
     // Create now enemies
@@ -119,12 +128,22 @@ public class TriangleEnemies : MonoBehaviour
                     + transform.position.y;
 
                 // Create and position the prefab
-                GameObject gameObject = Instantiate(prefab, new Vector2(posX, posY), Quaternion.identity);
+                if (spawnerLocations.Count > 0)
+                {
+                    GameObject gameObject = Instantiate(prefab, spawnerLocations[Random.Range(0, spawnerLocations.Count - 1)].position, Quaternion.identity);
+                    // Add TakePlaceEnemy behaviour in order to spawn enemy from different location
+                    // and follow their own behaviour to get in place after sometime.
+                    TakePlaceEnemy takePlaceEnemyBehaviour = gameObject.AddComponent<TakePlaceEnemy>();
+                    takePlaceEnemyBehaviour.placeToTake = new Vector2(posX, posY);
+                }
+                else
+                {
+                    GameObject gameObject = Instantiate(prefab, new Vector2(posX,posY), Quaternion.identity);
+
+                }                
 
                 // Set tag to the parent
-
                 gameObject.tag = TAG;
-
                 gameObjects.Add(gameObject);
                 gameObject.transform.SetParent(transform);
             }
@@ -135,7 +154,7 @@ public class TriangleEnemies : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(4);
-            GameObject gObj = gameObjects[Random.RandomRange(0, gameObjects.Count)];
+            GameObject gObj = gameObjects[Random.Range(0, gameObjects.Count)];
             if (gObj == null)
             {
                 print("This object is null " + gameObjects.Count + " " );

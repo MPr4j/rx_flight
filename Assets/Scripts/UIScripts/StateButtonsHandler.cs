@@ -51,6 +51,7 @@ public class StateButtonsHandler : MonoBehaviour
             btnImage.sprite = activeState;
             PlayerPrefs.SetInt(buttonKey, 1);
         }
+        ConstantsHolder.RetreiveConstantsFromPlayerPrefs();
         
     }
 
