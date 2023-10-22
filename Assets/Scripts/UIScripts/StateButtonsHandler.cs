@@ -52,7 +52,7 @@ public class StateButtonsHandler : MonoBehaviour
             PlayerPrefs.SetInt(buttonKey, 1);
         }
         ConstantsHolder.RetreiveConstantsFromPlayerPrefs();
-        
+        GameManager.GetInstance().NotifySettingIsChanged();
     }
 
 

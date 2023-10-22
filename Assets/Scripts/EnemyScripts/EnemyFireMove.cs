@@ -17,13 +17,11 @@ public class EnemyFireMove : MonoBehaviour
         rb.velocity = Quaternion.Euler(0, 0, zRotation) * Vector2.up * moveSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
     }
-
-
 }

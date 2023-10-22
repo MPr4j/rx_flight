@@ -16,9 +16,8 @@ public class MoveBTN : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     void Start()
     {
         playerObj = GameObject.FindWithTag("Player");
-        if (playerObj != null) {
-            rigidbody = playerObj.GetComponent<Rigidbody2D>();
-        }
+        rigidbody = playerObj?.GetComponent<Rigidbody2D>();
+        
         
     }
 
@@ -35,9 +34,8 @@ public class MoveBTN : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             if (rigidbody != null)
             {
-            rigidbody.velocity = Vector2.zero;
+              rigidbody.velocity = Vector2.zero;
             }
-
         }
 
     }

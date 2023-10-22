@@ -19,10 +19,14 @@ public class CircleEnemySpawner : MonoBehaviour
     }
     IEnumerator SpawnNewEnemy()
     {
-        yield return new WaitForSeconds(20f);
-        for (int i = 0;i < spawnerLocations.Count; i++)
+        while (true)
         {
-            GameObject gameObject = GameObject.Instantiate(circleAroundPlayerEnemy, spawnerLocations[i].transform);
+            yield return new WaitForSeconds(20f);
+            for (int i = 0; i < spawnerLocations.Count; i++)
+            {
+                GameObject gameObject = GameObject.Instantiate(circleAroundPlayerEnemy, spawnerLocations[i].transform);
+            }
         }
+        
     }
 }

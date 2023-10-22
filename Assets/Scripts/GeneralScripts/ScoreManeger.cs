@@ -8,20 +8,23 @@ public class ScoreManeger : MonoBehaviour
 {
     public static ScoreManeger instance;
 
-    public Text ScoreText;
-    public Text HeighScoreText;
+    [SerializeField]
+    private Text ScoreText;
     // Start is called before the first frame update
-    int score = 0;
-    int heighScore = 0;
+    int totalScore = 0;
     private void Awake()
     {
         instance = this;
+        GameManager.gameIsOver += GameOver;
+        GameManager.scoreWatcher += ScoreWatcher;
+    }
+    public void GameOver()
+    {
     }
     void Start()
     {
-        heighScore = PlayerPrefs.GetInt("HeighScore", 0);
-        ScoreText.text=score.ToString()+" Points";
-        HeighScoreText.text = "Heigh Score: " + heighScore.ToString();
+        totalScore = PlayerPrefs.GetInt("HighScore");
+        ScoreText.text = totalScore.ToString();
     }
 
     // Update is called once per frame
@@ -29,15 +32,14 @@ public class ScoreManeger : MonoBehaviour
     {
         
     }
-    public void AddPoint()
+   
+    public void ScoreWatcher(int score)
     {
-        score++;
-        ScoreText.text = score.ToString() + " Points";
-        if (heighScore < score)
+        print("Set score to the score text " + score);
+        if (ScoreText != null)
         {
-            PlayerPrefs.SetInt("HeighScore", score);
+            ScoreText.text = score.ToString();
         }
-        GameManager.GetInstance().NotifyScoreIsChanged(score);
     }
     
 }

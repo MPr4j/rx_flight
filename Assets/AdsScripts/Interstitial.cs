@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds;
-using GoogleMobileAds.Api;
+/*using GoogleMobileAds;
+using GoogleMobileAds.Api;*/
 using System;
 
 public class Interstitial : MonoBehaviour
 {
-    public void Start()
+   /* public void Start()
     {
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize((InitializationStatus initStatus) =>
@@ -138,5 +138,5 @@ public class Interstitial : MonoBehaviour
         };
     }
 
-
+*/
 }

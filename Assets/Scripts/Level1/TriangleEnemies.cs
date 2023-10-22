@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class TriangleEnemies : MonoBehaviour
 {
-    private static string TAG = "Triangle";
+    private static string TAG = "EnemyTriangle";
 
     // AnimationCurve to have ping pong style in position transitions
     [SerializeField] private AnimationCurve _curve;
@@ -172,7 +172,7 @@ public class TriangleEnemies : MonoBehaviour
     {
         
             yield return new WaitForSeconds(15);
-            if (destroyedMembers == 15)
+            if (destroyedMembers % 15 == 0)
             {
                 gameObjects.Clear();
                 targets.Clear();

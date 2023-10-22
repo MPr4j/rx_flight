@@ -6,10 +6,8 @@ public class UFOEnemies : MonoBehaviour
 {
     [SerializeField]
     private GameObject explosionPrefab;
-    private AudioSource explosionAudio;
     private void Awake()
     {
-        explosionAudio = GetComponent<AudioSource>();
     }
     // Start is called before the first frame update
     void Start()
@@ -24,13 +22,13 @@ public class UFOEnemies : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Lightning")
         {
-           
-            GameObject pNewObject = (GameObject) GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            /*ScoreManeger.instance.AddPoint();*/
+/*            GameManager.GetInstance().NotifyEnemyIsDead(collision.tag, collision.transform);
+*/            GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+              Destroy(gameObject);
         }
-     
+
     }
   
 

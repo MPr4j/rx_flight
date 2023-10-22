@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 60265625}
   m_Layer: 0
   m_Name: triangleEnemy
-  m_TagString: Enemy
+  m_TagString: EnemyTriangle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

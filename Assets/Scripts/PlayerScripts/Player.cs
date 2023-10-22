@@ -12,26 +12,23 @@ public class Player : MonoBehaviour
     private ChainLightning LightningEffect;
 
     [SerializeField] private Transform fireLocationToSpawn;
-    private AudioSource a_AudioSource;
     private Vector2 moveDirection = Vector2.zero;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidBody;
 
     GameObject lightningObj;
-    bool lightningEnabled = false;
+    public bool lightningEnabled { set; get; } = false;
     private void Awake()
     {
-        a_AudioSource = GetComponent<AudioSource>();
-
     }
     private void Start()
     {
         // Subscribe to the GameManager in order to check power ups
         GameManager.trophyWatcher += TrophyTriggered;
-        if (secondaryWeapon != null )
+        if (secondaryWeapon != null)
         {
             LightningEffect = secondaryWeapon.GetComponent<ChainLightning>();
         }
-        
+
     }
     private void Update()
     {
@@ -40,18 +37,17 @@ public class Player : MonoBehaviour
 
     private void TrophyTriggered(string trohpyTag)
     {
-        switch(trohpyTag)
+        switch (trohpyTag)
         {
             case "TStar":
-                ScoreManeger.instance.AddPoint();
                 break;
             case "TLight":
                 lightningEnabled = true;
                 break;
             case "THeal":
-                 GameManager.GetInstance().healthSystem.Heal(20);
+                GameManager.GetInstance().healthSystem.Heal(20);
                 break;
-                
+
         }
     }
 
@@ -59,23 +55,20 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         float remainedHealth = 100f;
-        switch (collision.gameObject.tag)
+        if (collision.tag.Contains("Enemy") || collision.tag == "EFire" || collision.tag == "StoneTiny")
         {
-            case "StoneTiny":
-            case "Enemy":
-            case "EnemyFire":
-                remainedHealth = GameManager.GetInstance().OnDamage(20);
-                lightningEnabled = false;
+            remainedHealth = GameManager.GetInstance().OnDamage(20);
+            lightningEnabled = false;
+            if (GameManager.constants[Constants.KeyVibration])
                 CrossPlatformVibration.Vibrate(100);
-                break;
-            case "StoneBig":
-                remainedHealth = GameManager.GetInstance().OnDamage(40);
-                lightningEnabled = false;
+        }
+        else if (collision.tag == "StoneBig")
+        {
+            remainedHealth = GameManager.GetInstance().OnDamage(40);
+            lightningEnabled = false;
+            if (GameManager.constants[Constants.KeyVibration])
                 CrossPlatformVibration.Vibrate(100);
-                break;
-            default:
-                /*remainedHealth = GameManager.GetInstance().healthSystem.GetHealhPercentage() * 100;*/
-                break;
+
         }
         if (remainedHealth <= 0)
         {
@@ -91,10 +84,6 @@ public class Player : MonoBehaviour
         {
             Destroy(lightningObj);
             Instantiate(primaryWeapon, fireLocationToSpawn.position, fireLocationToSpawn.rotation);
-            if (GameManager.constants[Constants.KeySound])
-            {
-                a_AudioSource.Play();
-            }
         }
         else
         {
@@ -110,10 +99,7 @@ public class Player : MonoBehaviour
     {
         lightningEnabled = false;
     }
-    public void Stop()
-    {
-        
-    }
+   
 
 }
 

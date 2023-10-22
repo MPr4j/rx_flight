@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
     public static int SelectedMap = 0;
 
     public HealthSystem healthSystem;
+
+    private int storedScore = 0;
+    private AudioSource trophyAudioSource;
 
     public Scene currentScene { get; set; }
     public enum MAP
@@ -69,6 +73,8 @@ public class GameManager : MonoBehaviour
      
         if (Instance == null)
         {
+            storedScore = PlayerPrefs.GetInt("HighScore");
+            trophyAudioSource = GetComponent<AudioSource>();
             Constants.Init();
             ConstantsHolder.RetreiveConstantsFromPlayerPrefs();
             Instance = this;
@@ -76,6 +82,7 @@ public class GameManager : MonoBehaviour
             gameMap.Add((int)MAP.GAMEPLAY_1, "GamePlay_1");
             gameMap.Add((int)MAP.GAMEPLAY_2, "GamePlay_2");
             gameMap.Add((int)MAP.GAMEPLAY_3, "GamePlay_3");
+
    
         }
         else
@@ -138,10 +145,9 @@ public class GameManager : MonoBehaviour
     public void OnSceneChanged(Scene scene,LoadSceneMode mode) {
         if(scene.name.Contains("GamePlay"))
         {
+           healthSystem = new HealthSystem(); 
            InstantiateNecessaryObjects();
-            
            DisableObjectsOnStart();
-           healthSystem = new HealthSystem();
         }
         currentScene = scene;
     }
@@ -166,6 +172,9 @@ public class GameManager : MonoBehaviour
     }
     public void NotifyGameIsOver()
     {
+        Time.timeScale = 0;
+        gameOverScreen.GameOver();
+        gameIsOver();
         GameObject joystick = GameObject.Find("Fixed Joystick");
         GameObject fireBtn = GameObject.Find("Fire");
         GameObject score = GameObject.Find("Text_Score");
@@ -177,7 +186,7 @@ public class GameManager : MonoBehaviour
         Destroy(score);
         Destroy(move);
         print("Joystick destroyed");
-        gameOverScreen.GameOver();
+       
     }
     public void NotifyEnemyIsDead(string tag, Transform killedPosition)
     {
@@ -193,14 +202,13 @@ public class GameManager : MonoBehaviour
     public void NotifyScoreIsChanged(int score)
     {
         if (scoreWatcher != null)
-        { 
+        {
             scoreWatcher(score);
         }
     }
 
     public float OnDamage(float damage)
     {
-        print("OnDamage + " + healthSystem);
         float remainedHealth = 0f;
         if (healthSystem != null)
         {
@@ -216,11 +224,31 @@ public class GameManager : MonoBehaviour
 
         return remainedHealth;
     }
-
+    public void NotifySettingIsChanged()
+    {
+        if (AudioManager.GetInstance() != null)
+        {
+            AudioManager.GetInstance().SettingIsChanged();
+        }
+    }
     public void NotifyTrophyHasTriggered(string trophy)
     {
+        if (trophy == "TStar")
+        {
+            storedScore++;
+            
+            if (scoreWatcher != null)
+            {
+                scoreWatcher(storedScore);
+            }
+            PlayerPrefs.SetInt("HighScore",storedScore);
+        }
         if (trophyWatcher != null)
         {            
+            if (trophyAudioSource != null)
+            {
+                trophyAudioSource.Play();
+            }
             trophyWatcher(trophy);
         }
     }

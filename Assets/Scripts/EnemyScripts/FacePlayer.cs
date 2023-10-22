@@ -12,11 +12,10 @@ public class FacePlayer : MonoBehaviour
     [SerializeField]
     private GameObject explosionPrefab;
 
-    private AudioSource explosionAudio;
 
     private void Awake()
     {
-        explosionAudio = GetComponent<AudioSource>();    
+        
     }
     void Update()
     {
@@ -42,23 +41,25 @@ public class FacePlayer : MonoBehaviour
         dir.Normalize();
         float zAngele = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
         Quaternion disiredRot = Quaternion.Euler(0,0,zAngele);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation,disiredRot,rotationSpeed*Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation,disiredRot, rotationSpeed * Time.deltaTime);
     }
 
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player")
         {
-            if (explosionAudio != null)
-            {
-                explosionAudio.Play();
-            }
-            GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position , Quaternion.identity);
-            /*ScoreManeger.instance.AddPoint();*/
+            GameManager.GetInstance().NotifyEnemyIsDead(gameObject.tag, gameObject.transform);
+            GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }else if (collision.gameObject.tag == "Lightning"){
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            GameManager.GetInstance().NotifyEnemyIsDead(gameObject.tag, gameObject.transform);
         }
-       
+
     }
  
 

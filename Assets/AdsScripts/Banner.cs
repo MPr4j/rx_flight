@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GoogleMobileAds.Api;
-using GoogleMobileAds;
+/*using GoogleMobileAds.Api;
+using GoogleMobileAds;*/
 using System;
 
 public class Banner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /*// Start is called before the first frame update
     void Start()
     {
         MobileAds.Initialize((InitializationStatus initStatus) => {
@@ -104,5 +104,5 @@ public class Banner : MonoBehaviour
         };
 
     }
-
+*/
 }

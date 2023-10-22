@@ -8,7 +8,7 @@ public class Trophy : MonoBehaviour
     {
         if (collision.tag == "Player")
         {        
-            GameManager.GetInstance().NotifyTrophyHasTriggered(gameObject.tag);
+            GameManager.GetInstance().NotifyTrophyHasTriggered(tag);
             Destroy(gameObject);            
         }
     }

@@ -9,20 +9,14 @@ public class TrackerEnemySpawner : MonoBehaviour
 
     [SerializeField] private int initCount = 3;
 
-    private float spawnDelay = 60f;
+    private float spawnDelay = 30f;
 
     private int totalCount = 3;
 
-    private float enemiesCurrentSpeed = 1f;
-    private const  float MAX_SPEED = 2.2f;
-    private const  float MAX_COUNT = 8f;
-
+    private float enemiesCurrentSpeed = 1.5f;
+    private const  float MAX_SPEED = 1.5f;
     private int producedEnemiesCount = 0;
-
-    private float membersSpeed = 1f;
     private float MAX_Number = 3f;
-    private const float RATE_IMPROVEMENT = 2;
-    private int ONCE_RATE_IMPROVEMENT = 5;
     void Start()
     {
         for(int i = 0; i <= initCount; i++)
@@ -51,7 +45,7 @@ public class TrackerEnemySpawner : MonoBehaviour
             if (MAX_Number > 8)
                 break;
             if (totalCount == 5 || totalCount == 7 || totalCount == 8)
-                enemiesCurrentSpeed += .4f;
+                enemiesCurrentSpeed += .3f;
             if (totalCount == MAX_Number)
             {
                 yield return new WaitForSeconds(spawnDelay);

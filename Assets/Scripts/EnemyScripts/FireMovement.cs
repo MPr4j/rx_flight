@@ -27,11 +27,9 @@ public class FireMovement : MonoBehaviour
   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag != "Player" && collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag.Contains("Enemy"))
         {
-            GameManager.GetInstance().NotifyEnemyIsDead(collision.tag == null ? "Enemy" : collision.tag, collision.transform);
             Destroy(gameObject);
-            Destroy(collision.gameObject);
         }
     }
 

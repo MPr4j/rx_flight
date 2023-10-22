@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class TrophyManager : MonoBehaviour
 {
-    private int currentScore = 0;
     private int numberOfKilledEnemy = 0;
 
     [SerializeField] 
@@ -15,16 +14,25 @@ public class TrophyManager : MonoBehaviour
 
      void Start()
     {
+        
+    }
+    private void OnEnable()
+    {
         // Subscribe to the EnemyWatcher of GameManager
         GameManager.enemyWatcher += KilledEnemyWatcher;
 
         // Subscribe to the ScoreWatcher of GameManager
-        GameManager.scoreWatcher += CurrentScoreWatcher; 
+        GameManager.scoreWatcher += CurrentScoreWatcher;
+    }
+    private void OnDisable()
+    {
+        GameManager.scoreWatcher -= CurrentScoreWatcher;
+        GameManager.enemyWatcher -= KilledEnemyWatcher;
+        numberOfKilledEnemy = 0;
     }
 
     public void CurrentScoreWatcher(int score)
     {
-        currentScore = score;
     }
     public void KilledEnemyWatcher(string enemyTag, Transform killedPosition)
     {
@@ -33,19 +41,14 @@ public class TrophyManager : MonoBehaviour
         numberOfKilledEnemy++;
         if ( numberOfKilledEnemy % 10 == 0)
         {
-            int RandomChance = Random.Range(0, 2);
-            print("RandomFuncking Change " + RandomChance);
-            if (RandomChance > 0 )
-            {
-                Instantiate(HealthTrophy, killedPosition.position,killedPosition.rotation);
-            }
-            else
-            {
-                Instantiate(StarTrophy, killedPosition.position, killedPosition.rotation);
-            }
-        }else if (numberOfKilledEnemy % 5 == 0)
+            Instantiate(StarTrophy, killedPosition.position, killedPosition.rotation);   
+        }
+        else if (numberOfKilledEnemy % 21 == 0)
         {
             Instantiate(LightningWeaponTrophy, killedPosition.position, killedPosition.rotation);   
+        }else if (numberOfKilledEnemy % 15 == 0)
+        {
+            Instantiate(HealthTrophy, killedPosition.position, killedPosition.rotation);
         }
 
     }

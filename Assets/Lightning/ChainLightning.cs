@@ -78,7 +78,7 @@ public class ChainLightning : MonoBehaviour
                 nextRefresh = Time.time + 0.01f;
                
             }
-        destroyTime = Time.time + 2f;
+        destroyTime = Time.time + 8f;
 
     }
 }

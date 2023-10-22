@@ -52,12 +52,6 @@ public class AsYouWish : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (edgeCollider != null)
-        {
-            if(collision.tag == "Enemy")
-            {
-                Destroy(collision.gameObject);                
-            }
-        }
+       
     }
 }

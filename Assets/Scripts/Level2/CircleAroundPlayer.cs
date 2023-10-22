@@ -15,7 +15,7 @@ public class CircleAroundPlayer : MonoBehaviour
 
 
     private float angle = 0f;
-    private float speedMax = 150f;
+    private float speedMax = 58f;
 
     // Player Object to track
     private Transform trackingTransform;
@@ -26,7 +26,7 @@ public class CircleAroundPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        trackingTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        trackingTransform = GameObject.FindWithTag("Player")?.GetComponent<Transform>();
 
         // Take RigidBody in order to add velocity 
         rigidbody = GetComponent<Rigidbody2D>();
@@ -108,12 +108,14 @@ public class CircleAroundPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Lightning")
         {
 
             GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-/*            ScoreManeger.instance.AddPoint();
-*/        }
+            Destroy(gameObject);
+            /*            ScoreManeger.instance.AddPoint();
+            */
+        }
 
     }
 

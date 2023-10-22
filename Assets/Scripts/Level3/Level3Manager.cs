@@ -19,8 +19,8 @@ public class Level3Manager : MonoBehaviour
    
     private float DURATION_TO_SPAWN = 25f;
 
-    private float initalDelay = 240f;
-    private float initalDelayPolice = 120f;
+    private float initalDelay = 120f;
+    private float initalDelayPolice = 60f;
    
     private bool StoneWelcomeDelayIsDone = false;
     private bool StoneCoroutineIsDone = false;
@@ -87,7 +87,7 @@ public class Level3Manager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(60f);
+            yield return new WaitForSeconds(30f);
             for (int i =0; i < 4; i++)
             {
              GameObject stoneInstance = Instantiate(
