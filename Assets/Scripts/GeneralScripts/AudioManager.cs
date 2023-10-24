@@ -19,14 +19,15 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            instance = this;
+            GameObject.DontDestroyOnLoad(gameObject);
+
         }
         GameManager.gameIsOver += GameIsOver;
         SceneManager.sceneLoaded += OnSceneLoaded; // Subscribe to scene changes
@@ -55,6 +56,10 @@ public class AudioManager : MonoBehaviour
     }
     private void PlayRelevantAudio(Scene scene)
     {
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         if (GameManager.constants[Constants.KeyMusic])
         {
 

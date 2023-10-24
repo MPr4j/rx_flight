@@ -2331,7 +2331,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878446354}
-  - component: {fileID: 1878446355}
   m_Layer: 0
   m_Name: StoneSpawnerHolder
   m_TagString: Untagged
@@ -2359,18 +2358,6 @@ Transform:
   - {fileID: 21112570}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1878446355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878446353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60eeaf628a0961c49a6ae3e838ed9794, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1943821063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3291,6 +3278,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Text_Score
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003515580990116101, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003515580990116101, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003515580990116101, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6003515580990116101, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725225960334482001, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725225960334482001, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725225960334482001, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8725225960334482001, guid: ca89f6c574b1fe9498f4d2c89bb81dce,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

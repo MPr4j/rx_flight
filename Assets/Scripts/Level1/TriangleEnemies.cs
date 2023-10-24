@@ -46,6 +46,14 @@ public class TriangleEnemies : MonoBehaviour
     {
         GameManager.enemyWatcher += EnemyDeadWatcher;
     }
+    public void OnDestroy()
+    {
+        GameManager.enemyWatcher -= EnemyDeadWatcher;
+    }
+    public void OnDisable()
+    {
+        GameManager.enemyWatcher -= EnemyDeadWatcher;
+    }
     private void EnemyDeadWatcher(string tag, Transform killedPosition)
     {
         if (tag == TAG)

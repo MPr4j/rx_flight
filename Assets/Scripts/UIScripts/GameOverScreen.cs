@@ -12,6 +12,14 @@ public class GameOverScreen : MonoBehaviour
     {
         GameManager.gameIsOver += GameOver;
     }
+    public void OnDisable()
+    {
+        GameManager.gameIsOver -= GameOver;
+    }
+    public void OnDestroy()
+    {
+        GameManager.gameIsOver -= GameOver;
+    }
     // Subscriber function
     public void GameOver()
     {
@@ -19,10 +27,13 @@ public class GameOverScreen : MonoBehaviour
     }
     public void RestartButton()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene(GameManager.GetInstance().currentScene.name);
     }
     public void MainButton()
     {
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("MainMenu");
     }
+
 }

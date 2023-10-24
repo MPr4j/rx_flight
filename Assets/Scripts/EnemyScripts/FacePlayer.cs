@@ -44,24 +44,28 @@ public class FacePlayer : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation,disiredRot, rotationSpeed * Time.deltaTime);
     }
 
+    private bool isDestroyed = false;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player")
+        if (!isDestroyed && (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Lightning"))
         {
+            // Mark the enemy as destroyed to prevent multiple triggers
+            isDestroyed = true;
+
             GameManager.GetInstance().NotifyEnemyIsDead(gameObject.tag, gameObject.transform);
+
+            // Create an explosion effect
             GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+            // Destroy the enemy
             Destroy(gameObject);
-        }else if (collision.gameObject.tag == "Lightning"){
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
-            GameManager.GetInstance().NotifyEnemyIsDead(gameObject.tag, gameObject.transform);
         }
 
     }
- 
+
 
 
 

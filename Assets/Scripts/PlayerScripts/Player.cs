@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
         }
 
     }
+    private void OnDisable()
+    {
+        GameManager.trophyWatcher -= TrophyTriggered;
+    }
     private void Update()
     {
 

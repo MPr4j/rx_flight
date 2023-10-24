@@ -104,17 +104,23 @@ public class CircleAroundPlayer : MonoBehaviour
         float distance = Vector2.Distance(currentPosition, trackingTransform.position);
         return distance > circleRadius;
     }
-
+    private bool isDestroyed = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Lightning")
-        {
 
+        if (!isDestroyed && (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Lightning"))
+        {
+            // Mark the enemy as destroyed to prevent multiple triggers
+            isDestroyed = true;
+
+            GameManager.GetInstance().NotifyEnemyIsDead(gameObject.tag, gameObject.transform);
+
+            // Create an explosion effect
             GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+            // Destroy the enemy
             Destroy(gameObject);
-            /*            ScoreManeger.instance.AddPoint();
-            */
         }
 
     }

@@ -20,17 +20,28 @@ public class UFOEnemies : MonoBehaviour
     {
         
     }
+
+    private bool isDestroyed = false;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Lightning")
+
+        if (!isDestroyed && (collision.gameObject.tag == "Fire" || collision.gameObject.tag == "Player" || collision.gameObject.tag == "Lightning"))
         {
-/*            GameManager.GetInstance().NotifyEnemyIsDead(collision.tag, collision.transform);
-*/            GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-              Destroy(gameObject);
+            // Mark the enemy as destroyed to prevent multiple triggers
+            isDestroyed = true;
+
+            GameManager.GetInstance().NotifyEnemyIsDead(gameObject.tag, gameObject.transform);
+
+            // Create an explosion effect
+            GameObject pNewObject = (GameObject)GameObject.Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+            // Destroy the enemy
+            Destroy(gameObject);
         }
 
     }
-  
-
+ 
 
 }
