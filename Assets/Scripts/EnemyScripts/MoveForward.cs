@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MoveForward : MonoBehaviour
+{
+
+    public float speedMax { get; set; } = 2f;
+    // Update is called once per frame
+    void Update()
+    {
+        Vector3 pos=transform.position;
+        Vector3 velocity=new Vector3(0,speedMax*Time.deltaTime,0);
+        pos += transform.rotation * velocity;
+        transform.position = pos;
+    }
+}
